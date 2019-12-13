@@ -12,3 +12,7 @@ class Solution:
                 j += 1
         while len(nums1) > m + n:
             nums1.pop()
+    # 2.课后看题解答题
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        # 一行代码
+        nums1[:] = sorted(nums1[:m] + nums2)
