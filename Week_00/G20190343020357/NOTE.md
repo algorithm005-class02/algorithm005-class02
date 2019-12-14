@@ -8,4 +8,19 @@ Big O notation
 	O(2^n):Exponential Growth指数
 	O(n!):Factorial阶乘
 只看最高复杂度的运算
-	
+
+
+删除光标右侧 
+	win:delete mac:fn+delete 
+最近编辑文件 
+	mac：command+e win：ctrl+e 
+行头行尾 
+	mac:command+left/right win:home/end 
+光标按单次切分 
+	mac：option+left/right win：ctrl+left/right 
+删除单词 
+	mac：option+delete wiin：ctrl+backspace 
+选中整行 
+	mac：shift+command+right win：shift+home/end 
+修复 
+	mac：option+return win：alt+enter
