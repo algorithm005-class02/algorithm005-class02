@@ -27,14 +27,10 @@ public class LeetCode_88_0011 {
         System.arraycopy(nums1, 0, nums1_copy, 0, m);
         int i = 0, j = 0, temp = 0;
         while (i < m + n) {
-            if (temp == m) {
+            if (temp == m || (j < n && nums1_copy[temp] > nums2[j])) {
                 nums1[i] = nums2[j++];
-            } else if (j == n) {
-                nums1[i] = nums1_copy[temp++];
-            } else if (nums1_copy[temp] < nums2[j]) {
-                nums1[i] = nums1_copy[temp++];
             } else {
-                nums1[i] = nums2[j++];
+                nums1[i] = nums1_copy[temp++];
             }
             i++;
         }
@@ -47,11 +43,7 @@ public class LeetCode_88_0011 {
         //从后向前遍历，不需要额外空间
         int pmLeft = m - 1, pmRight = nums1.length - 1, pn = n - 1;
         while (pmRight >= 0) {
-            if (pmLeft < 0) {
-                nums1[pmRight] = nums2[pn--];
-            } else if (pn < 0) {
-                nums1[pmRight] = nums1[pmLeft--];
-            } else if (nums1[pmLeft] < nums2[pn]) {
+            if (pmLeft < 0 || (pn >= 0 && nums1[pmLeft] < nums2[pn])) {
                 nums1[pmRight] = nums2[pn--];
             } else {
                 nums1[pmRight] = nums1[pmLeft--];
