@@ -17,7 +17,6 @@ package leetcode.week01;
 public class LeetCode_283_0011 {
 
     public void moveZeroes(int[] nums) {
-        if (nums == null) return;
         int j = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == 0) continue;
