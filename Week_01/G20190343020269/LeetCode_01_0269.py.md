@@ -1,4 +1,4 @@
-# LeetCode 01 | twoSum
+# LeetCode twoSum
 
 ### 方法一：
 
