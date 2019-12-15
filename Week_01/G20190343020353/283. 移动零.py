@@ -27,6 +27,7 @@ def move_zeros(nums):
         if nums[i]:
             nums[i], nums[last_none_zero_index] = nums[last_none_zero_index], nums[i]
             last_none_zero_index += 1
+    list()
 
 
 if __name__ == '__main__':
