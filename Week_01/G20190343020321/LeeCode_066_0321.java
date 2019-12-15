@@ -1,7 +1,7 @@
 class LeeCode_066_0321 {
     /**
-     * Two Sum
-     * 两数之和
+     * plusOne
+     * 加1
      */
     public static void main(String[] args) {
         int[] twoSum = new LeeCode_066_0321.Solution().plusOne(new int[]{3, 8, 7, 9, 4});
