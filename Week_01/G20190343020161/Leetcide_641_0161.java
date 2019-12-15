@@ -49,7 +49,7 @@ class MyCircularDeque {
     public MyCircularDeque(int k) {
         cqueue = new int[k];
         front = 0;
-        rear = 0;
+        rear = k - 1;
         cur_cap = 0;
         all_cap = k;
     }
