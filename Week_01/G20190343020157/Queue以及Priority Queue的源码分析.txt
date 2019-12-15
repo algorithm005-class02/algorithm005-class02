@@ -1,0 +1,22 @@
+Queue源码分析
+（1）首先Queue是一个继承于Colleciton的接口
+（2）Queue接口的方法主要有：
+        boolean add(E) 将元素添加至队列中，Queue源码对于add方法的解释为：在被允许的条件下向队列中插入一个确切的元素，所以不会有超出容量限制的情况。
+				如果插入成功，那么返回true，如果空间不足，那么将会抛出IllegalStateException异常。
+		
+		boolean offer(E) 将元素添加至队列中，Queue源码对于offer方法的解释为：在被允许的条件下向队列中插入一个确切的元素，所以不会有超出容量限制的情况。
+				  当使用一个有容量大小限制的队列时，此方法比add方法更适合（因为add方法在插入失败时会抛出异常，而offer方法插入失败则是返回false）
+				  
+		E remove(E)移除队首元素。Queue源码对于remove方法的解释为：检索并移除队首的元素。这个方法区别于poll方法在于如果队列为空那么此方法抛出NoSuchElementException异常。
+		 
+		E poll(E) 移除队首元素。Queue源码对于poll方法的解释为：检索并移除队首的元素。如果队列为空，那么此方法返回null。
+		 
+		E element() 查看队首元素。Queue源码对于element方法的解释为：检索元素，但是不移除。此方法区别于peek方法在于如果队列为空那么抛出NoSuchElementException异常。
+		
+		E peek() 查看队首元素。Queue源码对于peek方法的解释为：检索元素，但是不移除。此方法在队列为空时返回null。
+		
+		
+		
+Priority Queue 源码分析
+   是分析PriorityBlockingQueue吗？由于时间紧迫，我就不写PriorityBlockingQueue的源码分析了。。。。（感觉作业比想象中多一点，因为我只安排在了周末听课并且写作业，时间有点紧，下周调整一下时间分配）
+				
