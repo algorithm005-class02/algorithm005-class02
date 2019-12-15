@@ -1,0 +1,13 @@
+/target/
+/.idea
+!.mvn/wrapper/maven-wrapper.jar
+dgate*.log
+hs*.log
+dgate.jceks
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.mvn
