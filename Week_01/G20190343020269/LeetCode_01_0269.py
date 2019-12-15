@@ -4,4 +4,4 @@ class Solution:
             if target - nums[i] in hash:
                 return [hash[target - nums[i]], i]
             hash[nums[i]] = i
-        return[-1, -1]sss
+        return[-1, -1]
