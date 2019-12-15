@@ -1,3 +1,4 @@
+// 两数之和
 // 第一版 小优化 两层for循环 时间复杂度nlogn
 const twoSum = function (nums, target) {
     for (let i = 0; i < nums.length - 1; i++) {
