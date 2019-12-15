@@ -47,7 +47,7 @@ private:
 
 public:
     // 双循环遍历   时间复杂度 O(n^2) 空间复杂度 O(1)
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> twoSum2(vector<int>& nums, int target) {
         vector<int> res; 
         if (nums.size() <= 1)
             return res; // 若输入数组中元素少于2，则返回空数组
