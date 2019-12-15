@@ -1,9 +1,11 @@
+package removeDuplicates;
+
 import java.util.*;
 
 /**
  * @author scott 2019/12/15
  */
-public class RemoveDuplicates {
+public class Solution1 {
 
     public int removeDuplicates(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>(nums.length);
