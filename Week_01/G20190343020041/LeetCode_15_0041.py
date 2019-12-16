@@ -20,15 +20,27 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        result = []
         nums.sort()
-        # todo two point
-        for i in range(len(nums) - 2):
-            for j in range(i + 1, len(nums) - 1):
-                for k in range(j + 1, len(nums)):
-                    if nums[i] + nums[j] + nums[k] == 0:
-                        result.append((nums[i], nums[j], nums[k]))
-        return list(set(result))
+        res = []
+        for k in range(len(nums)):
+            if nums[k] > 0: break
+            if k > 0 and nums[k] == nums[k - 1]: continue
+            l, r = k + 1, len(nums) - 1
+            while l < r:
+                s = nums[l] + nums[k] + nums[r]
+                if s == 0:
+                    res.append([nums[k], nums[l], nums[r]])
+                    l += 1
+                    r -= 1
+                    while l < r and nums[l] == nums[l - 1]: l += 1
+                    while l < r and nums[r] == nums[r + 1]: r -= 1
+                elif s < 0:
+                    l += 1
+                    while l < r and nums[l] == nums[l - 1]: l += 1
+                else:
+                    r -= 1
+                    while l < r and nums[r] == nums[r + 1]: r -= 1
+        return res
 
 
 # leetcode submit region end(Prohibit modification and deletion)
