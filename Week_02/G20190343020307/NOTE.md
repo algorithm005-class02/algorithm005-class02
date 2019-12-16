@@ -11,4 +11,5 @@ defaultdict可以利用工厂函数，给初始key带来一个默认值。
     	d[k].append(v)
 
 	list(d.items())
-
+2 enumerate(list) 生成 顺序号和值 对
+3 python 中 ord 函数用来计算字母的 ASCII 值
