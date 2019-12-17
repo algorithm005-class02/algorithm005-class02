@@ -33,4 +33,19 @@ public class ReverseListLinkedList {
         }
         return newNode;
     }
+
+    public ListNode reverseList3(ListNode head) {
+        return reverseListRecursion(head, null);
+    }
+
+    public ListNode reverseListRecursion(ListNode cur, ListNode prev) {
+        if (cur == null) {
+            return prev;
+        }
+        ListNode next = cur.next;
+        cur.next = prev;
+        return reverseListRecursion(next, cur);
+    }
+
+
 }
