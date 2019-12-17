@@ -1,0 +1,72 @@
+分析Queue和Priority Queue的源码(java)
+
+一、Queue 源码分析
+Queue是接口类里面定义了6个方法：
+元素添加的方法有add、offer，
+元素出列的方法有remove、poll,
+元素查询的方法有element、peek
+因为是接口不做过多分析，重点分析priorityqueue。
+
+二、PriorityQueue Java源码分析，从下列几个维度进行分析：
+1、它的简介。
+PriorityQueue是一个优先队列，不遵守先进先出原则，
+它继承AbstractQueue（实现了queue接口）同时实现Serializable接口（这样它可以被序列化）
+2、底层数据结构是通过数组还是链表进行维护？
+底层是通过一个数组在维护队列，源码如：transient Object[] queue;
+这个数组维护了完全二叉树（又名小顶堆），这样的数据结构可以通过O(1)的时间复杂度找到最小的元素。
+3、元素的添加、出列、查询对应的时间复杂度分析？
+元素添加：时间复杂度为O(logN),只会对比父节点，树的层级为logN,所以则为O(logN)
+元素移除：时间复杂度为O(logN)
+查询顶元素：时间复杂度为O(1)
+随机查找元素：时间复杂度为O(N)
+4、容量的扩容操作逻辑？
+倍数扩容，扩容时new一个新的数组，把原数组数据copy到新数组中。
+5、它是否是线程安全？
+非线程安全，如果需要做到线程安全可以使用PriorityBlockingQueue
+基于源代码进行了修改
+插入元素代码：
+//这里不考虑扩容的情况
+private void siftUpComparable1(int k, Integer x) {//k是队列中元素数量，x是插入的元素
+    
+    while (k > 0) {
+        int parent = (k - 1) >>> 1;
+        Integer e = queue[parent];//取出父节点元素
+        if (x>e)//插入元素大于父节点，则不用做任务操作
+            break;
+        queue[k] = (Integer)e;//父节点元素移到子节点上          
+        k = parent;//向上迭代，找父节点
+    }
+    queue[k] = x;
+}
+删除元素代码：
+//这里不考虑扩容的情况
+	//size是队列元素数量，k是队列中要移除元素下标
+private void siftDownComparable1(int size,int k) {
+	int s= --size;
+	if (s == k) {// removed last element
+            queue[k] = null;
+            return;
+	}
+	Integer key = queue[s];
+        queue[s] = null;
+        int half = size >>> 1;        // loop while a non-leaf
+        while (k < half) {  //这里没有完全弄明白，为何要用half
+
+        	int child = (k << 1) + 1; // 父节点下左节点下标
+            int c = queue[child];  // 父节点下的左节点值
+            int right = child + 1;    // 父节点下的右节点下标
+            if (right < size && c > queue[right]) //左节点大于右节点时，左右节点元素互换
+                c = queue[child = right];
+            
+            if (key < c) 
+                break;
+            queue[k] = c; //左节点元素上移位变成父节点
+            k = child;  // 向下迭代，找子节点
+        }
+        queue[k] = (Integer)key; //最后空出来的元素放尾元素
+   }
+	
+	
+
+
+
