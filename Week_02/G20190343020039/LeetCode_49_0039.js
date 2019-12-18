@@ -15,11 +15,8 @@ var groupAnagrams = function(strs) {
   }
 
   const result = [];
-  const hasOwnProperty = Object.prototype.hasOwnProperty;
   for (let key in m) {
-    if (hasOwnProperty.call(m, key)) {
-      result.push(m[key]);
-    }
+    result.push(m[key]);
   }
   return result;
 };
