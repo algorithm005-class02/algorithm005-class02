@@ -1,0 +1,96 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@ShaLl6TeAr 
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+
+Read the guide
+
+ Watch 0
+ Star 0  Fork 134 ShaLl6TeAr/algorithm005-class02
+forked from algorithm005-class02/algorithm005-class02
+ Code  Pull requests 0  Actions  Projects 0  Wiki  Security  Insights  Settings
+Branch: master 
+algorithm005-class02/Week_01/G20190343020345/LeetCode_21_0345
+Find file Copy path
+@ShaLl6TeAr ShaLl6TeAr Rename LeetCode_1_0345 to LeetCode_21_0345
+a97885d 2 days ago
+1 contributor
+55 lines (50 sloc)  1.11 KB
+RawBlameHistory
+  
+//合并两个有序链表
+//java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+
+        ListNode head, ft;
+        if (l1.val > l2.val) {
+            head = l2;
+            ft = l2;
+            l2 = l2.next;
+        } else {
+            head = l1;
+            ft = l1;
+            l1 = l1.next;
+        }
+
+        while (l1 != null || l2 != null) {
+            if (l1 == null) {
+                ft.next = l2;
+                break;
+            }
+            if (l2 == null) {
+                ft.next = l1;
+                break;
+            }
+            if (l1.val > l2.val) {
+                ft.next = l2;
+                ft = l2;
+                l2 = l2.next;
+            } else {
+                ft.next = l1;
+                ft = l1;
+                l1 = l1.next;
+            }
+        }
+
+        return head;
+    }
+
+}
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Found 7 out of 7 items
