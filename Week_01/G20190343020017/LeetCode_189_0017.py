@@ -15,4 +15,11 @@ class Solution:
             for n in range(len(nums) - 1):
                 nums[-n-1] = nums[-n-2]
             nums[0] = v
-
+    # 2.课后看题解解题
+    def rotate(self, nums, k) -> None:
+        # 参考官方题解方法四：翻转法
+        n = len(nums)
+        k = k % n
+        nums[:] = nums[::-1]
+        nums[0:k] = nums[k-n-1:-n-1:-1]
+        nums[k:n] = nums[-1:k-n-1:-1]
