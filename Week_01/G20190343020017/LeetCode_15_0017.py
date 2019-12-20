@@ -73,7 +73,7 @@ class Solution:
             if num < 0:
                 left = bisect.bisect_left(nums, - num - nums[-1], i + 1)
                 right = bisect.bisect_right(nums, (- num) // 2, left)
-                for num2 in nums[left: right]：
+                for num2 in nums[left: right]:
                     num3 = (- num - num2)
                     # num2 != num3 排除已经考虑到的 a,a,b 情况
                     # num2 最大为 -num//2， 所以此处 num3 不可能 = num
