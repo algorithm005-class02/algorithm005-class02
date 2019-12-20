@@ -57,3 +57,5 @@ c-a v 粘贴图片
 # 安装插件
 paste image
 markdown enhance previewp
+
+github push
