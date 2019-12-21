@@ -49,7 +49,7 @@ class MyCircularDeque {
     public MyCircularDeque(int k) {
         cqueue = new int[k];
         front = 0;
-        rear = k-1;
+        rear = k - 1;
         cur_cap = 0;
         all_cap = k;
     }
@@ -59,8 +59,8 @@ class MyCircularDeque {
         if (isFull()) {
             return false;
         }
-        cqueue[front - 1 + all_cap] = value;
-        front = front - 1 + all_cap;
+        cqueue[(front - 1 + all_cap) % all_cap] = value;
+        front = (front - 1 + all_cap) % all_cap;
         ++ cur_cap;
         return true;
     }
@@ -93,7 +93,7 @@ class MyCircularDeque {
         }
         rear = (rear - 1 + all_cap) % all_cap;
         --cur_cap;
-        return true
+        return true;
     }
 
     /** Get the front item from the deque. */
@@ -106,6 +106,9 @@ class MyCircularDeque {
 
     /** Get the last item from the deque. */
     public int getRear() {
+        if (isEmpty()) {
+            return -1;
+        }
         return cqueue[rear];
     }
 
