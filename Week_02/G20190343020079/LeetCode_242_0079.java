@@ -1,4 +1,3 @@
-```
 package com.star.l242;
 
 /**
@@ -7,7 +6,7 @@ package com.star.l242;
  * @Description: No Description Yet.
  */
 public class Solution_3 {
-  public boolean isAnagram(String s, String t) {
+    public boolean isAnagram(String s, String t) {
     if (s.length() != t.length()) return false;
     int[] counter = new int[26];
     for (int i = 0; i < s.length(); i++) {
@@ -20,6 +19,5 @@ public class Solution_3 {
     }
 
     return true;
-  }
+    }
 }
-```

@@ -1,4 +1,3 @@
-```
 package com.star.l49;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.Map;
  * 字符串排序，用作key，value为原始字符串
  */
 public class Solution_1 {
-  public List<List<String>> groupAnagrams(String[] strs) {
+    public List<List<String>> groupAnagrams(String[] strs) {
     Map<String, List<String>> res = new HashMap<>();
     for (String s:strs) {
       char[] charArr = s.toCharArray();
@@ -31,6 +30,5 @@ public class Solution_1 {
       l.add(entry.getValue());
     }
     return l;
-  }
+    }
 }
-```
