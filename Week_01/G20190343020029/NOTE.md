@@ -193,7 +193,7 @@ thisWeek.add(55);
 thisWeek.add(50); 
 thisWeek.add(52); 
 thisWeek.add(49); 
-console.logconsole.log(thisWeek.average()); // 显示 54.875
+console.log(thisWeek.average()); // 显示 54.875
 </code></pre>
 
 
@@ -341,7 +341,135 @@ head.next = head
 
 
 ### 栈、队列、优先队列、双端队列
+栈和队列都是典型的线性结构。栈的特点是后进先出，常用来处理具有递归结构的数据；队列的特点则是先进先出，在实际中体现出公平的原则，可以用来暂时存放需要按照一定次序依次处理但尚未处理的元素。
 ##### 栈
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;栈的一端是栈顶，另一端是栈底。最后插入的元素是最先被删除或读取的元素。一叠盘子、大型火车站用于调整调度火车头方向的调度栈结构都可视为栈的模型。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;习惯上往栈中插入元素为push操作，简称压栈或入栈。删除栈顶元素称为pop操作，简称为出栈或弹出。
+1. 栈的抽象数据类型
+&nbsp;栈的操作：进栈push、出栈pop、读栈顶top、判断是否为空isEmpty和是否已满isFull等。栈的实现与其存储结构相关。
+2. 栈的实现
+<pre><code>
+function Stack() {
+  this.dataStore = []
+  this.top = 0
+  this.push = push
+  this.pop = pop
+  this.peek = peek
+}
+</code></pre>
+<pre><code>
+//push()
+function push(element) {
+  this.dataStore[this.top++] = element
+}
+</code></pre>
+<pre><code>
+//pop()
+function pop() {
+  return this.dataStore[--this.top]
+}
+</code></pre>
+<pre><code>
+//peek()
+function peek() {
+  return this.dataStore[this.top-1]
+}
+</code></pre>
+<pre><code>
+//length()
+function length() {
+  return this.top
+}
+</code></pre>
+<pre><code>
+//clear()
+function clear() {
+  this.top = 0
+}
+</code></pre>
+3. 顺序栈
+&nbsp;需要一块连续的区域来存储栈中的元素，事先需要知道或估算栈的大小。顺序栈实现时，用一个整型变量top（通常称为栈顶指针）来指示当前栈顶位置，同时也可表示当前栈中元素的个数。
+* top的两种定义方式：
+&nbsp;1）将其设置为栈中第一个空闲位置，即空栈的top为0；
+&nbsp;2）将其定义为栈中最上面的那个元素的位置，而非第一个空闲位置，此时空栈的top初始化为-1或任何非自然数
+4. 栈中元素是动态变化的，当栈中有最大个数个元素时，进栈会产生上溢出。在空栈进行出栈会造成下溢出。为避免溢出，在对栈进行push和pop操作之前检查栈是否已满或已空。
+5. 链式栈
+&nbsp;链式栈本质上是简化的链表，栈顶元素应该设为链表头。
+6. 栈的应用
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;记录网页访问历史、保存文本编辑器中的undo序列、编译栈中函数调用地址和参数的保存、二叉树的深度优先等。
 ##### 队列
+1. 队列是一种列表，队列只能在队尾插入元素，在队首删除元素。
+2. 队列的应用：
+&nbsp;提交操作系统执行的一系列进程、打印任务池等，一些仿真系统用模拟银行或杂货店里排队的顾客。
+3. 插入操作叫做入队、删除操作叫做出队。读取队头元素操作为peek()。
+4. 用数组实现的队列：
+<pre><code>
+function Queue() {
+  this.dataStore = []
+  this.enqueue = enqueue
+  this.dequeue = dequeue
+  this.front = front
+  this.back = back
+  this.toString = toString
+  this.empty = empty
+}
+</code></pre>
+<pre><code>
+function enqueue(element) {
+  this.dataStore.push(element)
+}
+</code></pre>
+<pre><code>
+function dequeue() {
+  return this.dataStore.shift()
+}
+</code></pre>
+<pre><code>
+function front() {
+  return this.dataStore[0]
+}
+</code></pre>
+<pre><code>
+function back() {
+  return this.dataStore[this.dataStore.length-1]
+}
+</code></pre>
+<pre><code>
+function toString() {
+  var retStr = ""
+  for(var i = 0; i < this.dataStore.length; ++i) {
+    reStr += this.dataStore[i] + ";"
+  }
+  return retStr
+}
+</code></pre>
+<pre><code>
+function empty() {
+  if(this.dataStore.length == 0) {
+    return true
+  }else {
+    return false
+  }
+}
+</code></pre>
 ##### 优先队列
+1. 在一般情况下，从队列中删除的元素，一定是率先入队的元素。但是也有一些使用队列的 应用，在删除元素时不必遵守先进先出的约定。这种应用，需要使用一个叫做优先队列的 数据结构来进行模拟。
+2. 优先队列的应用：医院急诊室
+<pre><code>
+function Patient(name, code) {
+  this.name = name
+  this.code = code
+}
+</code></pre>
+<pre><code>
+function dequeue() {
+  var priority = this.dataStore[0].code
+  for(var i = 1; i < this.dataStore.length; ++i) {
+    if(this.dataStore[i].code < priority) {
+      priority = i
+    }
+  }
+  return this.dataStore.splice(priority, 1)
+}
+</code></pre>
 ##### 双端队列
