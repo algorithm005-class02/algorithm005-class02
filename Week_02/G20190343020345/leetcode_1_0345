@@ -1,0 +1,17 @@
+func twoSum(nums []int, target int) []int {
+    
+    m := make(map[int]int, 50)
+
+    for i := 0; i < len(nums); i++ {
+        if m[target - nums[i]] != 0 {
+            r := make([]int, 2)
+            r[0] = m[target - nums[i]] - 1
+            r[1] = i
+            return r
+        } else {
+            m[nums[i]] = i + 1
+        }
+    }
+    return nil
+
+}
