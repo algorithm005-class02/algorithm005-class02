@@ -1,0 +1,23 @@
+func isAnagram(s string, t string) bool {
+    
+    if len(s) != len(t) {
+        return false
+    }
+    
+    arr := [26]int{}
+    
+    for _, v := range s {
+        arr[v-'a']++
+    }
+    
+    for _, v := range t {
+        if arr[v-'a'] == 0 {
+            return false
+        } else {
+            arr[v-'a']--
+        }
+    }
+
+    return true
+    
+}
