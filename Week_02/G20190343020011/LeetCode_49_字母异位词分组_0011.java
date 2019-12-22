@@ -21,7 +21,7 @@ import java.util.*;
 // 不考虑答案输出的顺序。
 //
 // Related Topics 哈希表 字符串
-public class LeetCode_49_0011 {
+public class LeetCode_49_字母异位词分组_0011 {
 
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> map = new HashMap<>();

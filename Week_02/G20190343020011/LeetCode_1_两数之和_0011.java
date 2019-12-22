@@ -15,7 +15,7 @@ import java.util.Map;
 //所以返回 [0, 1]
 //
 // Related Topics 数组 哈希表
-public class LeetCode_1_0011 {
+public class LeetCode_1_两数之和_0011 {
 
     public int[] twoSum(int[] nums, int target) {
         if (nums == null || nums.length < 2) throw new RuntimeException("wrong!");

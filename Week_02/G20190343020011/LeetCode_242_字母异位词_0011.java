@@ -22,7 +22,7 @@ import java.util.Map;
 // 进阶:
 //如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
 // Related Topics 排序 哈希表
-public class LeetCode_242_0011 {
+public class LeetCode_242_字母异位词_0011 {
 
     /**
      * HashMap，时间较长
