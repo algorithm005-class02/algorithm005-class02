@@ -68,6 +68,7 @@ void merge(char* s, int start, int middle, int end){
         temp[i++] = s[y++];
     }
     for(  k = 0 ; k < end-start+1 ; k ++){
+        //TODO:There is a BUS ERROR while ACCESSING "s[k+start]" when I was debugged with gdb or lldb, but I cannot figure it out. pls help.
         s[k+start] = temp[k];
     }
     free(temp);
@@ -75,22 +76,14 @@ void merge(char* s, int start, int middle, int end){
 }
 
 void mymergesort(char* s, int start, int end){
-//    printf("terminator\n");
     //terminator
-    if(start == end){
-        
-        return;
-    }
-//    printf("process\n");
+    if(start == end) return;
     //process 
     int middle = start + ((end - start)>>1);
 
     //drill down
-//    printf("drill down\n");
     mymergesort(s,start, middle);
-//    printf("drill down cont.\n");
     mymergesort(s,middle+1, end);
-//    printf("reverse\n");
     //reverse
     merge(s,start, middle, end);
 }
@@ -105,35 +98,12 @@ bool isAnagram(char * s, char * t){
     while(t[t_size] != NULL){
         t_size++;
     }
-//    printf("s_size:%d,t_size:%d\n",s_size,t_size);
-    if(s_size != t_size){
-        return false;
-    }
-    if(s_size == 0 && t_size == 0)
-        return true;
-    printf("sizes are equal.\n");
+    if(s_size != t_size) return false;
+    if(s_size == 0 && t_size == 0) return true;
     mymergesort(s,0,s_size-1);
-    printf("s:\n");
-    for(i=0;i<s_size;i++)
-        printf("%c ", s[i]);
-    printf("\nt:\n");
     mymergesort(t,0,t_size-1);
-    for(j=0;j<t_size;j++)
-        printf("%c ", t[j]);
-    printf("\n");
     return !strcmp(s,t);
 }
-/*
-int main(){
-    char *s = "anagram";
-    int i = 0;
-    mymergesort(s,0,4);
-    printf("final:\n");
-    for(i = 0; i< 4; i++){
-        printf("%c ",s[i]);
-    }
-    return 0;
-}
-*/
+
 // @lc code=end
 
