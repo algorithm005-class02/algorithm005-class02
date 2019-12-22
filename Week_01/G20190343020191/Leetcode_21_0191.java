@@ -6,6 +6,9 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+/**
+ * 思路：使用递归 合并两个链表
+ */
 class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if(l1 == null) return l2;
