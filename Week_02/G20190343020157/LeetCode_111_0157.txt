@@ -1,0 +1,31 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    //与求二叉树的最大深度不同的是叶子结点
+    //执行用时 :0 ms, 在所有 java 提交中击败了100.00%的用户内存消耗 :36.4 MB, 在所有 java 提交中击败了95.03%的用户
+    public int minDepth(TreeNode root) {
+        if (root == null)return 0;
+        int leftMinValue = Integer.MAX_VALUE;
+        int rightMinValue = Integer.MAX_VALUE;
+        if (root.left != null){
+            leftMinValue = minDepth(root.left);
+        }
+
+        if (root.right != null){
+            rightMinValue = minDepth(root.right);
+        }
+        
+        if(root.left == null && root.right == null){
+            leftMinValue = 0;
+            rightMinValue = 0;
+        }
+        return (Math.min(leftMinValue,rightMinValue)) + 1;
+    }
+}
