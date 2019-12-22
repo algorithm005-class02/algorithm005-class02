@@ -58,14 +58,14 @@ func helper(root *TreeNode, res *[]int) {
 }
 
 // 不能这样传参，扩容之后res会变
-func helper2(root *TreeNode, res []int) {
-	if root == nil {
-		return
-	}
-	helper2(root.Left, res)
-	res = append(res, root.Val)
-	helper2(root.Right, res)
-}
+//func helper2(root *TreeNode, res []int) {
+//	if root == nil {
+//		return
+//	}
+//	helper2(root.Left, res)
+//	res = append(res, root.Val)
+//	helper2(root.Right, res)
+//}
 
 type Stack struct {
 	data []*TreeNode
