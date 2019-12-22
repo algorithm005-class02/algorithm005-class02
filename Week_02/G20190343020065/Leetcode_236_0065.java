@@ -6,6 +6,7 @@ public class Leetcode_236_0065 {
        -如果右子树包含p和q，那么最近公共祖先在右子树中，进入right子树继续查找
        -继续上述查找方法
     */
+
    class Solution {
        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
            if (root == null || root == p || root == q) return root;
