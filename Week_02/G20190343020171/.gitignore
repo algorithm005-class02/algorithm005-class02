@@ -1,0 +1,7 @@
+../../.vscode/
+output/
+.idea/
+*_local.conf
+*_local.sh
+*.test
+templates/
