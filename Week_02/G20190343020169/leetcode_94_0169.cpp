@@ -31,6 +31,7 @@ public:
 
         vector<TreeNode*> v;
         v.push_back(root);
+
         while(v.size() > 0){
             TreeNode* pNode = v.back();
             if(pNode->left){
@@ -45,11 +46,13 @@ public:
         return result;  
     }
 
+
     vector<int> recursive_inorder(TreeNode* root){
         vector<int> v;
         inorderTraversal1(v,root);
         return v;
     }
+
 
     void inorderTraversal1(vector<int> &v,TreeNode* root){
         if(root == NULL){

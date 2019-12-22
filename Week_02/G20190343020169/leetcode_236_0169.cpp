@@ -14,6 +14,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
 #include<iostream>
 #include<ctype.h>
 
@@ -25,6 +26,7 @@ private:
     TreeNode* ans;
 
 public:
+
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         recurseTree(root, p, q);
         return ans;
@@ -45,5 +47,6 @@ public:
 
         return left + right + mid > 0;
     }
+
 };
 // @lc code=end
