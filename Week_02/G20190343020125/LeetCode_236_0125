@@ -1,0 +1,22 @@
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //递归入口
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        //去该节点的左子树上查询
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        //去该节点的右子树上查询
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+
+
+        //如果左子树上没有，说明在又子树上
+        if (left == null) {
+            return right;
+        }
+        //如果右子树上没有，说明在左子树上
+        if (right == null) {
+            return left;
+        }
+        //左右均有 ，说明该节点就是最近公共节点
+        return root;
+}
