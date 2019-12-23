@@ -1,10 +1,6 @@
 package main
 
-// NAryTreeNode Definition for a n ary tree node
-type NAryTreeNode struct {
-	Val      int
-	Children []*NAryTreeNode
-}
+import "fmt"
 
 func postorderTraversal(root *NAryTreeNode) []int {
 	ret := []int{}
@@ -23,8 +19,7 @@ func recursionPostorderTraversal(root *NAryTreeNode, o *[]int) {
 	*o = append(*o, root.Val)
 }
 
-/*
-func main() {
+func testPostorderTraversal() {
 	one := &NAryTreeNode{Val: 1, Children: []*NAryTreeNode{}}
 	two := &NAryTreeNode{Val: 2, Children: []*NAryTreeNode{}}
 	three := &NAryTreeNode{Val: 3, Children: []*NAryTreeNode{}}
@@ -41,4 +36,3 @@ func main() {
 
 	fmt.Println(postorderTraversal(one))
 }
-*/

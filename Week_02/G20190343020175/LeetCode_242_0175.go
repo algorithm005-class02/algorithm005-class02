@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"sort"
 )
 
@@ -33,16 +34,16 @@ func isAnagramHash(s string, t string) bool {
 	return true
 }
 
-/*
-func main() {
+func testIsAnagramSorting() {
 	fmt.Println(isAnagramSorting("anagram", "nagaram"))
 	fmt.Println(isAnagramSorting("rat", "car"))
 	fmt.Println(isAnagramSorting("a", "ab"))
 	fmt.Println(isAnagramSorting("ab", "a"))
+}
 
+func testIsAnagramHash() {
 	fmt.Println(isAnagramHash("anagram", "nagaram"))
 	fmt.Println(isAnagramHash("rat", "car"))
 	fmt.Println(isAnagramHash("a", "ab"))
 	fmt.Println(isAnagramHash("ab", "a"))
 }
-*/

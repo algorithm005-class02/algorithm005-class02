@@ -1,10 +1,6 @@
 package main
 
-// NAryTreeNode Definition for a n ary tree node
-type NAryTreeNode struct {
-	Val      int
-	Children []*NAryTreeNode
-}
+import "fmt"
 
 func levelorder(root *NAryTreeNode) [][]int {
 	ret := [][]int{}
@@ -29,8 +25,7 @@ func levelorder(root *NAryTreeNode) [][]int {
 	return ret
 }
 
-/*
-func main() {
+func testLevelorder() {
 	one := &NAryTreeNode{Val: 1, Children: []*NAryTreeNode{}}
 	two := &NAryTreeNode{Val: 2, Children: []*NAryTreeNode{}}
 	three := &NAryTreeNode{Val: 3, Children: []*NAryTreeNode{}}
@@ -53,4 +48,3 @@ func main() {
 
 	fmt.Println(levelorder(one))
 }
-*/

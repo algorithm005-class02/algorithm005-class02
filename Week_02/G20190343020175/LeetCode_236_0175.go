@@ -1,11 +1,6 @@
 package main
 
-// TreeNode Definition for a binary tree node
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+import "fmt"
 
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	var ret *TreeNode
@@ -55,8 +50,7 @@ func recursionInorderSearch(root, target *TreeNode, roadMap *[]*TreeNode) bool {
 	return false
 }
 
-/*
-func main() {
+func testLowestCommonAncestor() {
 	zero := &TreeNode{Val: 0, Left: nil, Right: nil}
 	one := &TreeNode{Val: 1, Left: nil, Right: nil}
 	two := &TreeNode{Val: 2, Left: nil, Right: nil}
@@ -86,4 +80,3 @@ func main() {
 		fmt.Println("none")
 	}
 }
-*/

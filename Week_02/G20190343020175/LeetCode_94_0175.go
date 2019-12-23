@@ -1,11 +1,6 @@
 package main
 
-// TreeNode Definition for a binary tree node
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+import "fmt"
 
 func inorderTraversal(root *TreeNode) []int {
 	if nil == root {
@@ -27,8 +22,7 @@ func recursionInorderTraversal(root *TreeNode, o *[]int) {
 	}
 }
 
-/*
-func main() {
+func testInorderTraversal() {
 	one := &TreeNode{Val: 1, Left: nil, Right: nil}
 	two := &TreeNode{Val: 2, Left: nil, Right: nil}
 	three := &TreeNode{Val: 3, Left: nil, Right: nil}
@@ -38,4 +32,3 @@ func main() {
 
 	fmt.Println(inorderTraversal(one))
 }
-*/

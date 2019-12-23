@@ -1,12 +1,5 @@
 package main
 
-// TreeNode Definition for a binary tree node
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func buildTree(preorder []int, inorder []int) *TreeNode {
 	return recursionBuildTree(preorder, inorder)
 }
@@ -43,8 +36,6 @@ func recursionBuildTree(preorder []int, inorder []int) *TreeNode {
 	return root
 }
 
-/*
-func main() {
+func testBuildTree() {
 	buildTree([]int{3, 1, 2, 4}, []int{1, 2, 3, 4})
 }
-*/
