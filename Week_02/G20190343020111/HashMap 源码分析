@@ -1,0 +1,20 @@
+HashMap 源码分析
+从下列几个维度进行分析：
+1、它的简介？
+它是一种key-value键值对的数据结构，key不允许重复。通过对key进行hash得到一个数组的下标，直接存储到数组里面，可实现插入、访问的时间复杂度为O(1)。当对不同key进行hash得到相同下标时，它通过链表进行扩展，即是一个数组下标里面存储了多个元素。源代码里面对应的数据结构代码transient Node<K,V>[] table;
+2、数组结构对应分析？
+节点里面有4个属性，其中一个是对象自己本身。
+static class Node<K,V> implements Map.Entry<K,V> {
+        final int hash;
+        final K key;
+        V value;
+        Node<K,V> next;
+3、添加元素分析
+第一步：如果table数据是null，则resize一个数组。
+第二步：hash后的下标如果没有被其他元素占住，则直接创建一个新的node存储到table数据中。
+第三步：hash后的下标被其他元素占住，一种情况是新增的元素key与table数组中的key存在相同的情况，则直接用新的node替换原来旧的node。第二种情况是key不相同，则把新的node放到旧node下面的形成一个链表。
+备注：里面还用到了TreeNode，是用red-black实现，没看明白为何要用。
+4、删除元素分析（忽略TreeNode的情况）
+第一步：通过对key进行hash后找到下标。
+第二步：一种情况，节点是个链表，通过遍历链表找到对应的元素，再调用linkedlist里面的方法进行删除
+第二种情况，节点非链表，没看太明白。
