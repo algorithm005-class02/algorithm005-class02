@@ -1,9 +1,11 @@
 class Solution {
     public void clearDeque(Deque<Integer> deque,int i,int k,int[] nums){
 
+
         if(!deque.isEmpty() && deque.getFirst() == i-k){
             deque.removeFirst();
         }
+
         while(!deque.isEmpty() && nums[i] > nums[deque.getLast()]){
             deque.removeLast();
         }
@@ -12,6 +14,9 @@ class Solution {
 
     public int[] maxSlidingWindow(int[] nums, int k)
     {
+
+        //双端队列，队尾插入，对头是最大的。
+        //插入一个数之前，从队尾移除比待插入数字小的数。
         Deque<Integer> deque = new LinkedList<>();
         int [] output = new int[nums.length - k + 1];
         if (k<=1){
