@@ -2,23 +2,23 @@
  * @param {string} beginWord
  * @param {string} endWord
  * @param {string[]} wordList
- * @return {number}
+ * @return {string[][]}
  */
-var ladderLength = function(beginWord, endWord, wordList) {
+var findLadders = function(beginWord, endWord, wordList) {
   const charSet = generateCharSet();
   let wordSet = new Set(wordList);
   let visited = new Set();
+  let result = [];
   let queue = [];
   visited.add(beginWord);
-  queue.push(beginWord);
-  let level = 0;
-  while (queue.length > 0) {
+  queue.push([beginWord]);
+  let foundResult = false;
+  while (queue.length > 0 && !foundResult) {
     let levelSize = queue.length;
+    let subVisited = new Set();
     while (levelSize-- > 0) {
-      let cur = queue.shift();
-      if (cur === endWord) {
-        return level + 1;
-      }
+      let path = queue.shift();
+      let cur = path[path.length - 1];
       let curCharArray = cur.split("");
       for (let i = 0; i < curCharArray.length; i += 1) {
         let old = curCharArray[i];
@@ -26,16 +26,23 @@ var ladderLength = function(beginWord, endWord, wordList) {
           curCharArray[i] = charSet[j];
           let next = curCharArray.join("");
           if (!visited.has(next) && wordSet.has(next)) {
-            visited.add(next);
-            queue.push(next);
+            let newpath = path.concat([next]);
+            if (next === endWord) {
+              foundResult = true;
+              result.push(newpath);
+            }
+            queue.push(newpath);
+            subVisited.add(next);
           }
         }
         curCharArray[i] = old;
       }
     }
-    level += 1;
+    for (let elem of subVisited) {
+      visited.add(elem);
+    }
   }
-  return 0;
+  return result;
 };
 
 function generateCharSet() {
