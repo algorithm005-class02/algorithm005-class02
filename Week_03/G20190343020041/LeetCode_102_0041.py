@@ -34,7 +34,7 @@ class TreeNode:
 
 
 class Solution:
-    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+    def levelOrderDfs(self, root: TreeNode) -> List[List[int]]:
         """
         dfs
         """
@@ -54,6 +54,28 @@ class Solution:
                         node.append(q.right)
             queue = node
             res.append(child)
+        return res
+
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        """
+        dfs
+        :param root:
+        :return:
+        """
+        res = []
+
+        def dfs(level, n: TreeNode):
+            if n:
+                if level == len(res):
+                    res.append([])
+
+                res[level].append(n.val)
+                if n.left:
+                    dfs(level + 1, n.left)
+                if n.right:
+                    dfs(level + 1, n.right)
+
+        dfs(0, root)
         return res
 
 # leetcode submit region end(Prohibit modification and deletion)
