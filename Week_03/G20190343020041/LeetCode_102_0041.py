@@ -34,9 +34,9 @@ class TreeNode:
 
 
 class Solution:
-    def levelOrderDfs(self, root: TreeNode) -> List[List[int]]:
+    def levelOrderBfs(self, root: TreeNode) -> List[List[int]]:
         """
-        dfs
+        bfs
         """
         if not root:
             return []
