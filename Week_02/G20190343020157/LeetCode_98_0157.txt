@@ -1,0 +1,88 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+
+    //第一次自己写，思路：递归，首先判断结点左、右子树是不是二叉搜索树，再判断左子树的最大值是否小于结点值，右子树最小值是否大于结点值。
+    //执行用时 :4 ms, 在所有 java 提交中击败了15.78%的用户内存消耗 :37.2 MB, 在所有 java 提交中击败了84.64%的用户
+    // public boolean isValidBST(TreeNode root) {
+    //     if (root == null)return true;
+    //     if (isValidBST2(root).get("result") == 1)return true;
+    //     return false;
+    // }
+
+    public Map<String,Integer> isValidBST2(TreeNode node){
+        Map<String,Integer> map = new HashMap<>();
+        // if (node.left == null && node.right == null){
+        map.put("min",node.val);
+        map.put("max",node.val);
+        map.put("result",1);
+        // return map;
+        // }
+        if(node.left != null){
+            Map<String,Integer> leftMap = isValidBST2(node.left);
+            if (leftMap.get("result") == -1 || leftMap.get("max") >= node.val){
+                map.put("result",-1);
+                return map;
+            }else{
+                map.put("min",leftMap.get("min"));
+            }
+        }else{
+            map.put("min",node.val);
+        }
+
+        if(node.right != null){
+            Map<String,Integer>  rightMap = isValidBST2(node.right);
+            if (rightMap.get("result") == -1 || rightMap.get("min") <= node.val){
+                map.put("result",-1);
+                return map;
+            }else{
+                map.put("max",rightMap.get("max"));
+            }
+        }else{
+            map.put("max",node.val);
+        }
+        map.put("result",1);
+        return  map;
+    }
+
+    
+
+
+    private Integer pre = null;
+
+    //优化，中序遍历二叉树，并且判断上一个值是否小于当前值
+    //执行用时 :1 ms, 在所有 java 提交中击败了88.44%的用户内存消耗 :38.8 MB, 在所有 java 提交中击败了30.92%的用户
+    public boolean isValidBST(TreeNode root) {
+        //
+        if (root == null) return true;
+        return middleScan(root);
+    }
+
+    public boolean middleScan(TreeNode node){
+
+        if (node.left != null){
+            if(! middleScan(node.left) )return false;
+        }
+        if (pre != null && node.val <= pre){
+            return false;
+        }else{
+             pre = node.val;
+        }
+        if (node.right != null){
+            if(! middleScan(node.right) )return false;
+        }
+
+        return true;
+    }
+
+
+
+
+}
