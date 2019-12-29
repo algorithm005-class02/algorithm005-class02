@@ -1,0 +1,16 @@
+golang
+
+func maxProfice (prices int[]) int {
+    var flag, result, index int
+    l := len(prices)
+    for index < l {
+        if index+1 < l {
+            flag = prices[index]
+            if flag < prices[index+1] {
+                result = result + prices[index+1] - prices[index]
+            }
+        }
+        index++
+    }
+    return result
+}
