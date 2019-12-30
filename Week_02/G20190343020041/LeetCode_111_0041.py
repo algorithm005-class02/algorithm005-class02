@@ -20,6 +20,9 @@
 
 # leetcode submit region begin(Prohibit modification and deletion)
 # Definition for a binary tree node.
+import collections
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -34,12 +37,29 @@ class Solution:
         m2 = self.minDepth(root.right)
         return m1 + m2 + 1 if m1 == 0 or m2 == 0 else min(m1, m2) + 1
 
-    def minDepth(self, root: TreeNode) -> int:
-        stack = [(root, 1)]
+    def minDepthDfs1(self, root: TreeNode) -> int:
+        stack, min_depth = [(root, 1)], float('inf')
+        if not root:
+            return 0
         while stack:
             depth, root = stack.pop()
+            if not root.left and not root.right:
+                min_depth = min(min_depth, depth)
+            if root.right:
+                stack.append((root.right, depth + 1))
+            if root.left:
+                stack.append((root.left, depth + 1))
+        return min_depth
 
-            stack.append((root.right, depth + 1))
-            stack.append((root.left, depth + 1))
+    def minDepth(self, root: TreeNode) -> int:
+        queue = collections.deque([(root, 1)])
+        while queue:
+            node, level = queue.popleft()
+            if node:
+                if not node.left and node.right:
+                    return level
+                queue.append((node.left, level + 1))
+                queue.append((node.right, level + 1))
+        return 0
 
 # leetcode submit region end(Prohibit modification and deletion)
