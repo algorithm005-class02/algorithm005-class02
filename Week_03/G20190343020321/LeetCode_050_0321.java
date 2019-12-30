@@ -27,8 +27,9 @@ public class LeetCode_050_0321 {
                 N = -N;
             }
             double ans = 1;
-            for (long i = 0; i < N; i++)
+            for (long i = 0; i < N; i++) {
                 ans = ans * x;
+            }
             return ans;
         }
 
