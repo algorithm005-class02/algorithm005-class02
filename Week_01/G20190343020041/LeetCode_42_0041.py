@@ -31,7 +31,7 @@ class Solution:
                 stack.pop()
                 if not stack:
                     break
-                distance = current = stack[-1] - 1
+                distance = current - stack[-1] - 1
                 min_height = min(height[stack[-1]], height[current])
                 res += distance * (min_height - h)
             stack.append(current)
