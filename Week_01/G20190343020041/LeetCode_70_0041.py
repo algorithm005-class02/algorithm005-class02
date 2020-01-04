@@ -41,6 +41,23 @@ class Solution(object):
             a, b = b, a + b
         return a
 
+    def climbStairsCache(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n <= 3:
+            return n
+        return self.climbStep(n, 1) + self.climbStep(n, 2)
+
+    def climbStep(self, n, step):
+        if n - step in self.cache:
+            two = self.cache[n - step]
+        else:
+            two = self.climbStairs(n - step)
+            self.cache[n - step] = two
+        return two
+
 
 # leetcode submit region end(Prohibit modification and deletion)
 
