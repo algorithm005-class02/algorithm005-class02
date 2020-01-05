@@ -77,3 +77,4 @@ buildNumber.properties
 **/.idea
 **/*.iml
 **/target
+.DS_Store
