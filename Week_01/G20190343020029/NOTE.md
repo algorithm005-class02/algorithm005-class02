@@ -473,3 +473,43 @@ function dequeue() {
 }
 </code></pre>
 ##### 双端队列
+双端队列是与队列类似的项的有序集合。双端队列有两个端部，首部和尾部，并且项在集合中保持不变。双端队不同的地方是添加和删除项是非限制性的。可以在前面或后面添加新项；同样，可以从任一端移除现有项。
+* 代码实现
+<pre><code>
+function Deque() {
+  this.dataStore = []
+  return this.dataStore
+}
+</code></pre>
+<pre><code>
+function addFront(element) {
+  this.dataStore.shift(element)
+}
+</code>
+<pre><code>
+function addRear(element) {
+  this.dataStore.push(element)
+}
+</code></pre>
+<pre><code>
+function removeFront() {
+  return this.dataStore.unshift()
+}
+</code></pre>
+<pre><code>
+function removeRear() {
+  return this.dataStore[this.dataStore.length--]
+}
+</code></pre>
+<pre><code>
+function isEmpty() {
+  return this.dataStore.length > 0 ? false : true
+}
+</code></pre>
+<pre><code>
+function size() {
+  return this.dataStore.length
+}
+</code></pre>
+* 应用
+&nbsp;回文
