@@ -154,3 +154,10 @@ def binary_search(array,target):
             left = mid + 1
         else:
             right = mid - 1
+
+
+
+Week04 第四周NOTE
+vscode 配置 Remote-ssh
+vscode 配置 git git-hub
+两种配置都是采用公私钥的方式，各自配置到对应服务器的authorized_keys 和 github的 settings -> ssh
