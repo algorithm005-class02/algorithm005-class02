@@ -11,7 +11,6 @@ var_dump($Solution->numDecodings($s)); // 2
 var_dump($Solution->numDecodings2($s)); // 2
 
 
-
 class Solution
 {
     // 动态规划

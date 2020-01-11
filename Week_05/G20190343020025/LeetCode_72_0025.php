@@ -7,7 +7,6 @@ $word1 = "horse";
 $word2 = "ros";
 $Solution = new Solution();
 var_dump($Solution->minDistance($word1, $word2)); // 3
-
 class Solution
 {
 

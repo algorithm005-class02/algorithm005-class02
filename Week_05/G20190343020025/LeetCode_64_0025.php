@@ -8,7 +8,6 @@ $grid = [
     [1, 5, 1],
     [4, 2, 1]
 ];
-
 $Solution = new Solution();
 var_dump($Solution->minPathSum($grid)); // 7
 var_dump($Solution->minPathSum1($grid)); // 7
