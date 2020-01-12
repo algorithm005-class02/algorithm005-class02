@@ -86,6 +86,7 @@
     多叉树DFS代码模板-递归版本：
     #系统自动维护了一个栈，就是函数的调用栈 
     visited = set()
+<<<<<<< HEAD
     def def(node, visited):
         # terminator
         if node is visited:
@@ -154,3 +155,46 @@
                 left = mid + 1
             else:
                 right = mid - 1
+=======
+    queue = []
+    queue.append([start])
+    
+    while queue:
+        node = queue.pop()
+        visited(node)
+
+        process(node)
+        nodes = generate_related_nodes(node) # 生成相关节点
+        queue.push(nodes)
+
+3.贪心算法
+贪心：当下做局部最优判断
+回溯：能够回退
+动态规划：最优判断+回退
+
+
+4.二分查找
+目标函数单调性（单调递增或单调递减）
+存在上下界
+可以通过索引访问元素
+
+#二分查找代码模板
+def binary_search(array,target):
+    left,right = 0,len(array)-1
+    while left <= right:
+        mid = (left+right)/2
+        if array[mid] == target:
+            # find the target
+            break or return result
+        elif array[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+
+
+Week04 第四周NOTE
+vscode 配置 Remote-ssh
+vscode 配置 git git-hub
+两种配置都是采用公私钥的方式，各自配置到对应服务器的authorized_keys 和 github的 settings -> ssh
+>>>>>>> 99ae75538e407793800952f6cbecce28203a9d68
