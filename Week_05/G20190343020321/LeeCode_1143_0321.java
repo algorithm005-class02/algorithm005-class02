@@ -7,7 +7,7 @@ class LeeCode_1143_0321 {
         String str1 = "abcde";
         String str2 = "ace";
         int count = new Solution().longestCommonSubsequence(str1, str2);
-        System.out.println(count);
+        System.out.println(str1 + "和" + str2 + "的最长公共子序列是：" + count);
 
     }
 
