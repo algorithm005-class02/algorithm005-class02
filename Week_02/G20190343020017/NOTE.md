@@ -25,3 +25,22 @@
 - *二叉搜索树访问节点过程类似二分法，增加查询删除的时间复杂度为 O(logn)*
 - *二叉搜索树在删除节点时需要拿最近一个大于该节点值的节点来替换占位*
 # 总结
+递归和迭代类似，都是用来解决相似重复性问题，本周主要学习的是树，树的问题个人感觉大部分适合用递归来解决，如遍历树，使用迭代则需要用栈或者队列存储。
+递归的模板：
+def recursion(level, p1, p2) {
+  # terminator
+  if level >= maxLevel {
+    return
+  }
+  # 不一定是level，也可能是其他条件，如节点为空等
+
+  # process 
+  process(levle)
+  # 很多时候本层的逻辑和 drill down 相关，代码可能写在一起
+
+  # drill down
+  recursion(level+1, p1, p2)
+
+  # clear status
+  reverseState(level)
+}
