@@ -28,7 +28,8 @@ hs_err_pid*
 .idea/uiDesigner.xml
 # Gradle:
 .idea/gradle.xml
-.idea/
+.idea/*
+.vscode/*
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 ## File-based project format:
