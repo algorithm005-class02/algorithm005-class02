@@ -1,0 +1,28 @@
+class Solution {
+
+    private List<String> resultList;
+
+    public List<String> generateParenthesis(int n) {
+        resultList = new LinkedList<>();
+        generate(0,0,n,"");
+        return  resultList;
+    }
+
+    public void generate(int left ,int right,int max ,String currentString) {
+
+        if ( left + right >= 2 * max && left == right){
+            //递归终止，将结果添加到list。
+            resultList.add(currentString);
+            return;
+        }
+
+        //中间阶段重复代码
+        if (left < max) {
+            generate(left+1,right,max,currentString +"(");     //当前字符串加左括号
+        }
+        if (right < left){
+            generate(left,right + 1,max,currentString +")");     //当前字符串加右括号
+        }
+
+    }
+}
