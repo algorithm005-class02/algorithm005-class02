@@ -69,4 +69,3 @@ class Trie:
 # param_2 = obj.search(word)
 # param_3 = obj.startsWith(prefix)
 # leetcode submit region end(Prohibit modification and deletion)
-g
