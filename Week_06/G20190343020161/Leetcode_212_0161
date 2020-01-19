@@ -1,0 +1,76 @@
+class Solution {
+    
+    private static final int R = 26;
+    private static final int ASCII_UPPER = 0xFF;
+    private static final int[][] directions = {{0, -1}, {0, 1}, {1, 0}, {-1, 0}};
+    private TrieNode root;
+    
+    private static class TrieNode {
+        private final TrieNode[] children;
+        private String word;
+        
+        private TrieNode() {
+            children = new TrieNode[R];
+            word = null;
+        }
+    } 
+    
+    private void buildTrie(String[] words) {
+        TrieNode curr;
+        int len, idx;
+        char c;
+        
+        for (String word : words) {
+            curr = root;
+            len = word.length();
+            for (int i = 0; i < len; ++i) {
+                c = word.charAt(i);
+                idx = c - 'a';
+                if (curr.children[idx] == null) curr.children[idx] = new TrieNode();
+                curr = curr.children[idx];
+            }
+            curr.word = word;
+        }
+    }
+    
+    public List<String> findWords(char[][] board, String[] words) {
+        List<String> rst = new ArrayList<>();
+        if (board == null || board.length == 0 || board[0].length == 0) return rst;
+        if (words == null || words.length == 0) return rst;
+        
+        root = new TrieNode();
+        buildTrie(words);
+        
+        for (int r = 0; r < board.length; ++r) {
+            for (int c = 0; c < board[0].length; ++c) {
+                search(r, c, root.children[board[r][c] - 'a'], board, rst);
+            }
+        }
+        
+        return rst;
+    }
+    
+    private void search(int r, int c, TrieNode root, char[][] board, List<String> tmp) {
+        if (root == null) return;
+        else if (root.word != null) {
+            tmp.add(root.word);
+            root.word = null; // we don't want to add this word again 
+        }
+        
+        // mark current grid as visited 
+        board[r][c] ^= 0x100;
+        
+        for (int[] direction : directions) {
+            int rr = r + direction[0], cc = c + direction[1];
+            if (!isValid(rr, cc, board) || root.children[board[rr][cc] - 'a'] == null) continue;
+            search(rr, cc, root.children[board[rr][cc] - 'a'], board, tmp);
+        }
+        
+        // backtrack: unmark current grid 
+        board[r][c] ^= 0x100;
+    }
+    
+    private boolean isValid(int r, int c, char[][] board) {
+        return r >= 0 && r < board.length && c >= 0 && c < board[0].length && board[r][c] <= ASCII_UPPER;
+    }
+}
