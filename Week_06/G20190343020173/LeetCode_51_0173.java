@@ -1,0 +1,51 @@
+package org.crayzer.leetcode.editor.en.advanced_search;
+
+import java.util.*;
+
+public class LeetCode_51_NQueens {
+    private Set<Integer> cols = new HashSet<>();
+    private Set<Integer> pie = new HashSet<>();
+    private Set<Integer> na = new HashSet<>();
+    private List<List<String>> res;
+
+    public List<List<String>> solveNQueens(int n) {
+        if (n < 1) return new ArrayList<>();
+        res = new LinkedList<>();
+        dfs(n, 0, new LinkedList<>());
+        return res;
+    }
+
+    private void dfs(int n, int row, LinkedList<Integer> track) {
+        if (row >= n) {
+            List<String> board = convert2Board(track, n);
+            res.add(board);
+            return;
+        }
+
+        for (int col = 0; col < n; col++) {
+            if (cols.contains(col) || pie.contains(row + col) || na.contains(row - col)) continue;
+
+            cols.add(col);
+            pie.add(row + col);
+            na.add(row - col);
+            track.add(col);
+            dfs(n, row + 1, track);
+            na.remove(row - col);
+            pie.remove(row + col);
+            cols.remove(col);
+            track.removeLast();
+        }
+    }
+
+    private List<String> convert2Board(LinkedList<Integer> track, int n) {
+        List<String> board = new LinkedList<>();
+        for (int num : track) {
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < n; i++) builder.append(".");
+            builder.replace(num, num + 1, "Q");
+            board.add(builder.toString());
+        }
+        return board;
+    }
+
+}
