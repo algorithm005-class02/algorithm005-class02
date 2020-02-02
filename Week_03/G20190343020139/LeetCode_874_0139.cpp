@@ -69,10 +69,15 @@ public:
         int cury = 0;
         int drct = 0;
         int max = 0;
+        int nxtx, nxty;
+        set<pair<int,int>> obstacleSet;//存放障碍物的集合
+        for (vector<int> obstacle: obstacles)
+            obstacleSet.insert(make_pair(obstacle[0], obstacle[1]));
+
 //        cout<<obstacles.size()<<endl;
         for(int i = 0; i < commands.size(); i++){
             if(commands[i] == -1){
-                drct = (drct + 5)%4;
+                drct = (drct + 1)%4;
             }
                 
             if(commands[i] == -2){
@@ -81,9 +86,12 @@ public:
             if(commands[i] > 0){
                 for(int j = 1; j <= commands[i]; j++){
 //                    cout<<"drct:"<<drct<<" j:"<<j<<" x:"<<curx<<" y:"<<cury<<endl;
-                    if(check(curx, cury, drct, obstacles)){
-                        curx += nx[drct];
-                        cury += ny[drct];
+//                    if(check(curx, cury, drct, obstacles)){
+                    nxtx = curx + nx[drct];
+                    nxty = cury + ny[drct];
+                    if(obstacleSet.find(make_pair(nxtx, nxty)) == obstacleSet.end()){
+                        curx = nxtx;
+                        cury = nxty;
                     }
                     else break;
                 }
@@ -105,11 +113,11 @@ private:
         int nxt_y = cury + ny[drct];
 //        cout << "nxt x:"<<nxt_x<<" y:"<<nxt_y<<endl;
         for(int i = 0; i < obstacles.size(); i++){
-            if(nxt_x == obstacles[i][0] && nxt_y == obstacles[i][1]){
-//                cout << "bang!" <<endl;
-                return false;
-            }
-                
+            if(nxt_x == obstacles[i][0]){
+                if(nxt_y == obstacles[i][1]){
+                    return false;
+                }
+            }  
         }
         return true;
         
