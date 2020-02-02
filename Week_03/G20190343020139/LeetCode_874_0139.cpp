@@ -68,6 +68,7 @@ public:
         int curx = 0;
         int cury = 0;
         int drct = 0;
+        int max = 0;
 //        cout<<obstacles.size()<<endl;
         for(int i = 0; i < commands.size(); i++){
             if(commands[i] == -1){
@@ -87,23 +88,25 @@ public:
                     else break;
                 }
             }
-            cout<<"command:"<<commands[i]<<" x:"<<curx<<" y:"<<cury;
-            if(drct == 0) cout <<"北 y+";
-            if(drct == 1) cout <<"东 x+";
-            if(drct == 2) cout <<"南 y-";
-            if(drct == 3) cout <<"西 x-";
-            cout<<endl;  
+            max = (curx*curx + cury*cury) > max ? (curx*curx + cury*cury) : max;
+//            cout<<"command:"<<commands[i]<<" x:"<<curx<<" y:"<<cury;
+//            if(drct == 0) cout <<"北 y+";
+//            if(drct == 1) cout <<"东 x+";
+//            if(drct == 2) cout <<"南 y-";
+//            if(drct == 3) cout <<"西 x-";
+//            cout<<endl;  
         }
-        return curx*curx + cury*cury;
+        
+        return max;
     }
 private:
     bool check(int curx, int cury, int drct, vector<vector<int>>& obstacles){
         int nxt_x = curx + nx[drct];
         int nxt_y = cury + ny[drct];
-        cout << "nxt x:"<<nxt_x<<" y:"<<nxt_y<<endl;
+//        cout << "nxt x:"<<nxt_x<<" y:"<<nxt_y<<endl;
         for(int i = 0; i < obstacles.size(); i++){
             if(nxt_x == obstacles[i][0] && nxt_y == obstacles[i][1]){
-                cout << "bang!" <<endl;
+//                cout << "bang!" <<endl;
                 return false;
             }
                 
