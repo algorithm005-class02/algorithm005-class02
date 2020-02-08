@@ -36,7 +36,7 @@ class UF{
         int rootTree1 = find(tree1);
         int rootTree2 = find(tree2);
         if(rootTree1 == rootTree2) return;
-        if(size[rootTree1]>size[rootTree2]){
+        if(size[rootTree1]>size[rootTree2]){//总是将长度短的树合并到长度长的树上，防止出现不平衡现象
             parent[rootTree2] = rootTree1;
             size[rootTree1] += size[rootTree2];
         }else{
@@ -47,7 +47,7 @@ class UF{
     }
 
     //找父节点
-    public int find(int node){
+    public int find(int node){//在查找父节点的同时缩短长度，将下面点的parent往上跳1级
         while(parent[node] != node){
             parent[node] = parent[parent[node]];
             node = parent[node];
