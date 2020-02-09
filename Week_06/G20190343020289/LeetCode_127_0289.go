@@ -2,7 +2,7 @@ package G20190343020289
 
 //127. 单词接龙
 func ladderLength(beginWord string, endWord string, wordList []string) int {
-	// BFS
+	// BFS+预处理
 	// wordList中没有endWord的直接排除 返回0
 	flag := false
 	for _, word := range wordList {
@@ -17,24 +17,30 @@ func ladderLength(beginWord string, endWord string, wordList []string) int {
 	visited := make(map[string]bool)
 	queue := []string{beginWord}
 	level := 0
+	wordLen := len(beginWord)
+	// 预处理数据
+	// 使用*替换字母，并把相同的字符串分组存入字典
+	wordListDic := make(map[string][]string)
+	for _, word := range wordList {
+		for i := 0; i < wordLen; i++ {
+			key := word[:i] + "*" + word[i+1:]
+			wordListDic[key] = append(wordListDic[key], word)
+		}
+	}
 	for len(queue) > 0 {
 		level++
 		newQueue := queue[len(queue):]
 		for _, item := range queue {
-			for _, word := range wordList {
-				diff := 0
-				for i := 0; i < len(item); i++ {
-					if item[i] != word[i] {
-						diff++
-					}
-				}
-				// 1个单词不一样
-				if diff == 1 && !visited[word] {
+			for i := 0; i < wordLen; i++ {
+				key := item[:i] + "*" + item[i+1:]
+				for _, word := range wordListDic[key] {
 					if word == endWord {
 						return level + 1
 					}
-					visited[word] = true
-					newQueue = append(newQueue, word)
+					if !visited[word] {
+						visited[word] = true
+						newQueue = append(newQueue, word)
+					}
 				}
 			}
 		}
