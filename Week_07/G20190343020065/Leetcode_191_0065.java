@@ -12,6 +12,7 @@ public class Leetcode_191_0065 {
         return count;
     }
 
+
     //解法二：技巧：将n与n - 1 进行安位与运算，将n的最后一个1置为0，循环执行并增加计数，直到将所有的1置0
 //    public int hammingWeight(int n) {
 //        int count = 0;
