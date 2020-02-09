@@ -20,12 +20,12 @@ func mergeSort(nums []int, left, right int) int {
 		}
 		ret += j - (mid + 1)
 	}
-	merge(nums, left, mid, right)
+	myMerge(nums, left, mid, right)
 
 	return ret
 }
 
-func merge(nums []int, left, mid, right int) {
+func myMerge(nums []int, left, mid, right int) {
 	temp := make([]int, right-left+1)
 	i, j, k := left, mid+1, 0
 
