@@ -2,49 +2,42 @@ package G20190343020289
 
 //127. 单词接龙
 func ladderLength(beginWord string, endWord string, wordList []string) int {
-	// BFS+预处理
+	// 双向BFS
 	// wordList中没有endWord的直接排除 返回0
-	flag := false
+	wordDic := make(map[string]bool)
 	for _, word := range wordList {
-		if word == endWord {
-			flag = true
-			break
-		}
+		wordDic[word] = true
 	}
-	if !flag {
+	if _, ok := wordDic[endWord]; !ok {
 		return 0
 	}
-	visited := make(map[string]bool)
-	queue := []string{beginWord}
-	level := 0
+	front := make(map[string]bool)
+	back := make(map[string]bool)
+	front[beginWord] = true
+	back[endWord] = true
+	level := 1
 	wordLen := len(beginWord)
-	// 预处理数据
-	// 使用*替换字母，并把相同的字符串分组存入字典
-	wordListDic := make(map[string][]string)
-	for _, word := range wordList {
-		for i := 0; i < wordLen; i++ {
-			key := word[:i] + "*" + word[i+1:]
-			wordListDic[key] = append(wordListDic[key], word)
-		}
-	}
-	for len(queue) > 0 {
+	for len(front) > 0 {
 		level++
-		newQueue := queue[len(queue):]
-		for _, item := range queue {
+		next_front := make(map[string]bool)
+		for word := range front {
 			for i := 0; i < wordLen; i++ {
-				key := item[:i] + "*" + item[i+1:]
-				for _, word := range wordListDic[key] {
-					if word == endWord {
-						return level + 1
+				for c := 'a'; c <= 'z'; c++ {
+					newWord := word[:i] + string(c) + word[i+1:]
+					if back[newWord] {
+						return level
 					}
-					if !visited[word] {
-						visited[word] = true
-						newQueue = append(newQueue, word)
+					if wordDic[newWord] {
+						next_front[newWord] = true
+						wordDic[newWord] = false
 					}
 				}
 			}
 		}
-		queue = newQueue
+		front = next_front
+		if len(back) < len(front) {
+			front, back = back, front
+		}
 	}
 	return 0
 }
