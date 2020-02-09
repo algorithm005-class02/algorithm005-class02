@@ -1,0 +1,60 @@
+class Solution {
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        int index = 0;
+        for (int i = 0;i < arr2.length; i ++){
+            int target = arr2[i];
+            for (int j = 0;j < arr1.length; j ++){
+                if (arr1[j] == target){
+                    arr1[j] = arr1[index];
+                    arr1[index] = target;
+                    index ++;  
+                }
+            }
+        }
+
+        // for (int j = index; j < arr1.length - 1; j++) {
+        //     for (int i = index ; i < arr1.length - (j  - index + 1); i++) {
+        //         if(arr1[i] > arr1[i + 1]){
+        //             int temp = arr1[i + 1];
+        //             arr1[i + 1] = arr1[i];
+        //             arr1[i] = temp;
+        //         }
+        //     }
+        // }
+
+        quickSort(arr1,index,arr1.length - 1);
+        return arr1;
+    }
+
+    public  void  quickSort(int[] array,int start,int end){
+        if (end <= start){
+            return;
+        }
+        int mid = partition2(array, start, end);
+        quickSort(array,start,mid - 1);
+        quickSort(array,mid + 1,end);
+    }
+
+    public  int  partition2(int[] array,int start,int end){
+        int pivotIndex = end;
+        int finalIndex = start;
+
+        //finalIndex以左都是小于基准值的，finalIndex向右都是大于基准值的。
+        for(int i = start;i < end; i ++){
+
+            if(array[i] < array[pivotIndex]){
+                int temp = array[i];
+                array[i] = array[finalIndex];
+                array[finalIndex] = temp;
+                finalIndex ++;
+            }
+        }
+
+        //交换完之后，将基准值放到中间（大于基准值的所有值的第一个与基准值交换位置）
+        int temp = array[finalIndex];
+        array[finalIndex] = array[end];
+        array[end] = temp;
+        return finalIndex;
+    }
+
+}

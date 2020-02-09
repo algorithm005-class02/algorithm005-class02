@@ -1,0 +1,55 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length <= 1){
+            return intervals;
+        }
+        quickSort(intervals,0,intervals.length - 1);
+        int length = 1;
+        for (int i = 1,count = 0; i < intervals.length; i ++){
+            if (intervals[i][0] <= intervals[count][1]){
+                intervals[count][1] = Math.max(intervals[count][1],intervals[i][1]);
+                intervals[count][0] = Math.min(intervals[count][0],intervals[i][0]);
+                intervals[i][0] = -1;
+            }else{
+                count = i;
+                length ++;
+            }
+        }
+        int[][] result = new int[length][2];
+        result[0][0] = intervals[0][0];
+        result[0][1] = intervals[0][1];
+        for (int i = 1,j = 1;i < intervals.length; i ++){
+            if (intervals[i][0] != -1){
+                result[j] = intervals[i];
+                j++;
+            }
+        }
+        return result;   
+    }
+    public static void quickSort(int[][] array, int begin, int end){
+        if(begin >= end){
+            return ;
+        }
+        int mid = partition(array,begin,end);
+        quickSort(array,begin,mid - 1);
+        quickSort(array,mid + 1,end);
+    }
+    public static int partition(int[][] array,int begin,int end){
+        int pivot = array[end][0];
+        int count = begin;
+        for (int i = begin;i < end; i ++){
+            if (array[i][0] < pivot){
+                int [] temp = array[i];
+                array[i] = array[count];
+                array[count] = temp;
+                count ++;
+            }
+        }
+
+        int [] temp = array[end];
+        array[end] = array[count];
+        array[count] = temp;
+
+        return count;
+    }
+}

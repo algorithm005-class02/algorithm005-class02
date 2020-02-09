@@ -1,0 +1,105 @@
+class Solution {
+    //执行用时 :37 ms, 在所有 java 提交中击败了10.25%的用户
+    //内存消耗 :36.7 MB, 在所有 java 提交中击败了96.36%的用户
+    // public boolean isAnagram(String s, String t) {
+    //     //将两个字符串转化为字符数组然后把它们放入hash中
+    //     if(s.length() != t.length()){
+    //         return false;
+    //     }
+    //     char[] sChar = s.toCharArray();
+    //     char[] tChar = t.toCharArray();
+    //     Map<Character,Integer> map = new HashMap<>();
+    //     for (int i = 0; i < sChar.length;i ++){
+    //         if (map.get(sChar[i]) != null){
+    //             int value = map.get(sChar[i]);
+    //             ++value;
+    //             map.put(sChar[i],value);
+    //         }else{
+    //             map.put(sChar[i],1);
+    //         }
+    //     }
+    //     for (int i = 0; i < tChar.length;i ++){
+    //         if ( map.get(tChar[i]) != null && map.get(tChar[i]) > 0){
+    //             if (map.get(tChar[i]) > 1){
+    //                 int value = map.get(tChar[i]);
+    //                 --value;
+    //                 map.put(tChar[i],value);
+    //             }else{
+    //                 map.remove(tChar[i]);
+    //             }
+    //         }else{
+    //             return false;
+    //         }
+    //     }
+
+    //     if( !map.isEmpty() ){
+    //         return false;
+    //     }else{
+    //         return true;
+    //     }
+        
+    // }
+
+
+
+ //  优化
+//     public boolean isAnagram(String s, String t) {
+//         //将两个字符串转化为字符数组然后把它们放入hash中
+//         if(s.length() != t.length()){
+//             return false;
+//         }
+//         char[] sChar = s.toCharArray();
+//         char[] tChar = t.toCharArray();
+//         Map<Character,Integer> map = new HashMap<>();
+//         for (int i = 0; i < sChar.length;i ++){
+//             if(sChar[i] == tChar[i]){
+//                 continue;
+//             }
+//             Integer sValue = map.get(sChar[i]);
+//             Integer tValue = map.get(tChar[i]);
+//             if(sValue == null && tValue == null){
+//                 map.put(sChar[i],1);
+//                 map.put(tChar[i],-1);
+//             }else{
+//                 if (sValue != null){
+//                     ++sValue;
+//                     map.put(sChar[i],sValue);
+//                 }else{
+//                     map.put(sChar[i],1);
+//                 }
+//                 if (tValue != null){
+//                     --tValue;
+//                     map.put(tChar[i],tValue);
+//                 }else{
+//                     map.put(tChar[i],-1);
+//                 }
+//             }
+//         }
+
+//         for (Map.Entry<Character,Integer> entry : map.entrySet()){
+//             if(entry.getValue() != 0){
+//                 return false;
+//             }
+//         }
+//         return true;
+        
+//     }
+
+//  第二次优化：参考国际站题解
+//执行用时 :3 ms, 在所有 java 提交中击败了91.81%的用户内存消耗 :37.4 MB, 在所有 java 提交中击败了95.80%的用户
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) return false;
+        //使用26长度的数组来存储字母
+        int[] alphabet = new int[26];
+        char[] sChar = s.toCharArray();
+        char[] tChar = t.toCharArray();
+        for (int i = 0; i < s.length() ; i++){
+            alphabet[sChar[i] - 'a']++;
+            alphabet[tChar[i] - 'a']--;
+        }
+        for(int i = 0; i < alphabet.length ; i ++){
+            if (alphabet[i] != 0)return false;
+        }
+        return true;
+    }
+}

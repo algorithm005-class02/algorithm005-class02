@@ -1,0 +1,58 @@
+class Solution {
+
+    //以归并排序思想解决
+    public int reversePairs(int[] nums) {
+        
+
+        
+        return mergeSort(nums,0,nums.length - 1);
+
+
+    }
+
+    public int mergeSort(int[] array,int begin,int end){
+        if (begin >= end){
+            return 0;
+        }
+
+        int mid = (begin + end) >> 1;
+
+        int sum = 0;
+        sum += mergeSort(array,begin,mid);
+        sum += mergeSort(array,mid + 1,end);
+
+        int [] tempArray = new int[end - begin + 1];
+
+        int i = begin;
+        int j = mid + 1;
+        int m = 0;
+        while (i <= mid && j <= end){
+            if (array[i] < array[j]){
+                tempArray[m ++] = array[i ++];
+            }else{
+                int k = i;
+                while(k <= mid){
+                    if (array[k] > 2 * array[j]){
+                        sum ++;
+                    }
+                    k ++;
+                }
+                tempArray[m ++] = array[j ++];
+            }
+        }
+
+        while(i <= mid){
+            tempArray[m ++] = array[i ++];
+        }
+
+        while(j <= end){
+            tempArray[m ++] = array[j ++];
+        }
+
+        for (int i1 = begin, n = 0; i1 <= end; i1++) {
+            array[i1] = tempArray[n ++];
+        }
+
+        return sum;
+    }
+}
