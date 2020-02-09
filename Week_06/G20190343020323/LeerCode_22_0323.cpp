@@ -1,5 +1,5 @@
 class Solution {
-public:
+public: 
     void helper(int left,int right,string s,vector<string> & result){
         if(left == 0 && right == 0){
             result.push_back(s);
