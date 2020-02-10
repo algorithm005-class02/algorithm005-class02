@@ -4,47 +4,26 @@
 # [51] N皇后
 #
 from typing import List
+
+
 # @lc code=start
 
 
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        cols = [0] * n
-        hill_diagonals = [0] * (2 * n - 1)
-        dale_diagonals = [0] * (2 * n - 1)
         res = []
 
-        def could_place(row, col):
-            return not cols[col] and not hill_diagonals[row + col] and not dale_diagonals[row - col]
-
-        def place_queen(row, col):
-            cols[col] = 1
-            hill_diagonals[row + col] = 1
-            dale_diagonals[row - col] = 1
-
-        def remove_queen(row, col):
-            cols[col] = 0
-            hill_diagonals[row + col] = 0
-            dale_diagonals[row - col] = 0
-
-        def backtrack(n, row, cur_stste):
+        def backtrack(n, queues, hill_diagonals, dale_diagonals):
+            row = len(queues)
             if row >= n:
-                res.append(cur_stste)
+                res.append(queues)
                 return
             for col in range(n):
-                if could_place(row, col):
-                    place_queen(row, col)
-                    backtrack(n, row+1, cur_stste + [col])
-                    remove_queen(row, col)
+                if col not in queues and row + col not in hill_diagonals and row - col not in dale_diagonals:
+                    backtrack(n, queues + [col], hill_diagonals + [row + col], dale_diagonals + [row - col])
 
-        def gr(n):
-            board = []
-            for s in res:
-                for c in s:
-                    board.append("." * c + "Q" + "." * (n-c-1))
-            return [board[i:i+n] for i in range(0, len(board), n)]
-        backtrack(n, 0, [])
-        return gr(n)
+        backtrack(n, [], [], [])
+        return [[["." * i + "Q" + "." * (n - i - 1)] for i in r] for r in res]
 
 
 # @lc code=end
