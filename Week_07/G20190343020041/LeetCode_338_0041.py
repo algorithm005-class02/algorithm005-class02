@@ -27,9 +27,7 @@ from typing import List
 class Solution:
     def countBits(self, num: int) -> List[int]:
         """
-        奇数=偶数+1
-        偶数=偶数/2
-        x / 2 is x >> 1 and x % 2 is x & 1
+        P(x)=P(x/2)+(xmod2)
         :param num:
         :return:
         """
