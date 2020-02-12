@@ -1,8 +1,7 @@
-学习笔记
 
-Trie 树代码模板：
+```python
+#Trie 树代码模板：
 class Trie(object):
-  
     def __init__(self): 
         self.root = {} 
         self.end_of_word = "#" 
@@ -29,8 +28,7 @@ class Trie(object):
         node = node[char] 
         return True
 
-
-并查集代码模板：
+#并查集代码模板：
 def init(p): 
     # for i = 0 .. n: p[i] = i; 
     p = [i for i in range(n)] 
@@ -48,7 +46,7 @@ def parent(self, p, i):
         x = i; i = p[i]; p[x] = root 
     return root
 
-BFS 代码模板：
+#BFS 代码模板：
 def BFS(graph, start, end):
     visited = set()
     queue = [] 
@@ -65,7 +63,7 @@ def BFS(graph, start, end):
     # other processing work 
     # ...
 
-双向BFS 代码模板：
+#双向BFS 代码模板：
 def BFS(graph, start, end):
     visited_begin = set()
     visited_end = set()
@@ -92,7 +90,7 @@ def BFS(graph, start, end):
     # ...
 
 
-A* 代码模板：
+#A* 代码模板：
 def AstarSearch(graph, start, end):
 
     pq = collections.priority_queue() # 优先级 —> 估价函数
@@ -107,3 +105,4 @@ def AstarSearch(graph, start, end):
         nodes = generate_related_nodes(node) 
     unvisited = [node for node in nodes if node not in visited]
         pq.push(unvisited)
+```
