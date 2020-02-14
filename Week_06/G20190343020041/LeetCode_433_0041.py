@@ -75,6 +75,28 @@ class Solution:
             queue = next_queue
 
         return -1
+    def minMutationTwoBFS(self, start: str, end: str, bank: List[str]) -> int:
+        front, back, visitor = set([start]), set([end]), set()
+        cnt = 0
+        while front:
+            next_queue = set()
+            for mutation in front:
+                visitor.add(mutation)
+                for i in range(len(mutation)):
+                    for c in "ACGT":
+                        if c != mutation[i]:
+                            next_mutation = mutation[:i] + c + mutation[i + 1:]
+                            if next_mutation in bank:
+                                if next_mutation in back:
+                                    return cnt + 1
+                                if next_mutation not in visitor:
+                                    next_queue.add(next_mutation)
+            cnt += 1
+            front = next_queue
+            if len(front) > len(back):
+                back, front = front, back
+        return -1
+
 
 
 # leetcode submit region end(Prohibit modification and deletion)
