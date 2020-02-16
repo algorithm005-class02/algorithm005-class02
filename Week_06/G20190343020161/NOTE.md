@@ -1,72 +1,44 @@
-# 学习笔记
-## Trie（前缀树、字典树）
-### 定义
-trie，又称前缀树或字典树，是一种有序树，用于保存关联数组，其中的键通常是字符串。与二叉查找树不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的前缀，也就是这个节点对应的字符串，而根节点对应空字符串。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。
+# 学习笔记 
+## AVL树
+- AVL树是平衡的二叉搜索树 
+- 平衡因子(Balance Factory):它左子树减去右子树的高度(有时相反)
+Balance Factory = {-1, 0, 1} 
+- 通过旋转操作来达到平衡(左旋、右旋、左右旋、右左旋) 
 
-### 特点
-- 根节点不包含字符，除根节点外每一个节点都只包含一个字符
-- 从根节点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串
-- 每个节点的所有子节点包含的字符都不相同
-### 复杂度
-- 参数：单词长度（L），树的出度（N）,树的高度（M）
-- 时间复杂度：O(L)
-- 空间复杂度：O(N^M)
-### 优点
-最大限度地减少无谓的字符串比较，查询效率比较高
-### 应用
-- 词频统计
-- 输入提示 
+缺点：节点需要存储额外信息，且调整次数频繁； 
 
-### 实现
-    
-    class Trie {
-    class TrieNode {
-        public TrieNode() {
-            children = new TrieNode[26];
-            is_word = false;
-        }
-        public boolean is_word;
-        public TrieNode[] children;
-    }
-    
-    private TrieNode root;
-    
-    /** Initialize your data structure here. */
-    public Trie() {
-        root = new TrieNode();
-    }
-    
-    /** Inserts a word into the trie. */
-    public void insert(String word) {
-        TrieNode p = root;
-        for (int i = 0; i < word.length(); i++) {
-            int index = (int)(word.charAt(i) - 'a');
-            if (p.children[index] == null)
-                p.children[index] = new TrieNode();
-            p = p.children[index];
-        }
-        p.is_word = true;
-    }
-    
-    /** Returns if the word is in the trie. */
-    public boolean search(String word) {
-        TrieNode node = find(word);
-        return node != null && node.is_word;
-    }
-    
-    /** Returns if there is any word in the trie that starts with the given prefix. */
-    public boolean startsWith(String prefix) {
-        TrieNode node = find(prefix);
-        return node != null;
-    }
-    
-    private TrieNode find(String prefix) {
-        TrieNode p = root;
-        for(int i = 0; i < prefix.length(); i++) {
-            int index = (int)(prefix.charAt(i) - 'a');
-            if (p.children[index] == null) return null;
-            p = p.children[index];
-        }
-        return p;
-    }
-}
+
+### 回顾一下树的遍历
+        
+       def preOrder(self, root):       
+       if root:
+            self.traverse_path.append(root.val)
+            self.preOrder(root.left)
+            self.preOrder(root.right)
+        
+       def inOrder(self, root)   
+       if root:
+            self.inOrder(root.left)
+            self.traverse_path.append(root.val)
+            self.inOrder(root.right)
+       
+       def postOrder(self, root):       
+       if root:
+            self.postOrder(root.left)
+            self.postOrder(root.right)
+            self.traverse_path.append(root.val)
+       
+### 二叉搜索树 
+二叉搜索树又称为有序二叉树、排序二叉树，它有以下几个特点： 
+1. 左子树上所有节点的值均小于它的根节点的值；
+2. 右字数上所有节点的值均大于它的跟节点的值；
+3. 由此类推：左右子树也分别树二叉排序树；
+
+二叉搜索树的查询效率和它树的高度有关，所以就引入了平衡二叉树；
+## 红黑树 
+红黑树是一种**近似平衡**的二叉搜索树(Binary Search Tree)，它能确保任何一个结点的左右子树的高度差小于两倍。
+具体来说，红黑树是满足一下条件的二叉搜索树：
+- 每个节点要么红色，要么黑色；
+- 根节点是黑色；
+- 每个叶子节点(NIL节点，空节点)是黑色的；
+- 
