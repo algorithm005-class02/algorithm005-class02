@@ -34,6 +34,18 @@ class Solution(object):
             water = max(min_bar * (r - l + 1), water)
         return water
 
+    def maxAreaSqrt(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        length = len(height)
+        r = 0
+        for i in range(length - 1):
+            for j in range(i + 1, length):
+                r = max(min(height[i], height[j]) * (j - i), r)
+        return r
+
 
 # leetcode submit region end(Prohibit modification and deletion)
 print(Solution().maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))
