@@ -30,3 +30,29 @@ delete  dp[i][j]=dp[i][j-1]+1
 去三者中最小的情况
 dp[i][j] = 1+min(dp[i-1][j],dp[i-1][j-1],dp[i][j-1])
 ```
+
+# 字符串
+1. 暴力法（brute force） - O(mn)
+2. Rabin-Karp 算法
+3. KMP 算法
+
+```java
+public static int forceSearch(String txt, String pat) {
+	int M = txt.length();
+	int N = pat.length();
+	for (int i = 0; i <= M - N; i++) {
+		int j;
+		for (j = 0; j < N; j++) {
+			if (txt.charAt(i + j) != pat.charAt(j))
+			break;
+		}
+		if (j == N) {
+			return i;
+		}
+		// 更加聪明？
+		// 1. 预先判断– hash(txt.substring(i, M)) == hash(pat)
+		// 2. KMP
+	}
+	return -1;
+}
+```
