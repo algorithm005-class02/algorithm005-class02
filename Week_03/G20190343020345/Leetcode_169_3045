@@ -1,0 +1,21 @@
+golang
+
+func majorityElement (nums int[]) int {
+
+    var flag, index, count int
+    flag = nums[index]
+    for index < len(nums) {
+        if flag == nums[index] {
+            count++
+        } else {
+            if count < 0 {
+                count = 1
+                flag = nums[index]
+            } eles {
+                count--
+            }
+        }
+        index++
+    }
+    return flag
+}

@@ -1,3 +1,7 @@
+
+/**
+ * 思路：sum-target 放到一个hashmap中
+ */
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         int length= nums.length;
