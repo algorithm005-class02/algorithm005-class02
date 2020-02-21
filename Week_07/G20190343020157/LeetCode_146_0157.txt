@@ -1,0 +1,93 @@
+import java.util.Hashtable;
+class LRUCache {
+
+    private int capacity;
+    private int size;
+    private Node first;
+    private Node tail;
+    private Hashtable<Integer,Node> hashTable;
+
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        this.size = 0;
+        first = new Node();
+        tail = new Node();
+        first.next = tail;
+        tail.prev = first;
+        hashTable = new Hashtable<>();
+    }
+
+    public int get(int key){
+        Node target = hashTable.get(key);
+        if(target != null){
+            removeNode(target);
+            addNode(target.key,target.value);
+            return target.value;
+        }else{
+            return -1;
+        }
+    }
+    
+    
+    public void put(int key, int value) {
+        //首先查找是否存在此元素
+        Node target = hashTable.get(key);
+        if(target == null){
+            //没有这个元素，新new一个node赋给target并且把他放到head前边。
+            target = addNode(key,value);
+            ++size;
+            if(size > capacity){
+                //链表尾部去除一个
+                popTail();
+                --size;
+            }
+        }else{
+            //有这个元素
+            removeNode(target);
+            addNode(key,value);
+        }
+    }
+
+    public void popTail(){
+        Node tailPrev = tail.prev;
+        tailPrev.prev.next = tail;
+        tail.prev = tailPrev.prev;
+        tailPrev.prev = null;
+        tailPrev.next = null;
+        hashTable.remove(tailPrev.key);
+    }
+
+    public Node addNode(int key,int value ){
+        Node target = new Node();
+        target.key = key;
+        target.value = value;
+        target.prev = first;
+        target.next = first.next;
+        first.next.prev = target;
+        first.next = target;
+        hashTable.put(key,target);
+        return target;
+    }
+
+    public void removeNode(Node target){
+        target.prev.next = target.next;
+        target.next.prev = target.prev;
+        target.prev = null;
+        target.next = null;
+    }
+
+
+    private static class Node{
+        public int key;
+        public int value;
+        Node prev;
+        Node next;
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
