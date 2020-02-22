@@ -18,8 +18,55 @@ HashTable+Double LinkedList
 
 ## 初级排序-O(n^2)
 1. 选择排序
+```go
+func selectionSort(arr []int) []int {
+	length := len(arr)
+	minIndex := 0
+	for i := 0; i < length-1; i++ {
+		minIndex = i
+		for j := i + 1; j < length; j++ {
+			if arr[j] < arr[minIndex] {
+				minIndex = j
+			}
+		}
+		arr[i], arr[minIndex] = arr[minIndex], arr[i]
+	}
+	return arr
+}
+```
 2. 插入排序
+```go
+// 插入排序
+func insertionSort(arr []int) []int {
+	length := len(arr)
+	preIndex := 0
+	current := 0
+	for i := 1; i < length; i++ {
+		preIndex = i - 1
+		current = arr[i]
+		for preIndex >= 0 && arr[preIndex] > current {
+			arr[preIndex+1] = arr[preIndex]
+			preIndex--
+		}
+		arr[preIndex+1] = current
+	}
+	return arr
+}
+```
 3. 冒泡排序
+```go
+func bubbleSort(arr []int) []int {
+	length := len(arr)
+	for i := 0; i < length-1; i++ {
+		for j := 0; j < length-1-i; j++ {
+			if arr[j] > arr[j+1] {
+				arr[j], arr[j+1] = arr[j+1], arr[j]
+			}
+		}
+	}
+	return arr
+}
+```
 
 ## 高级排序-O(N*logN)
 1. 快速排序
