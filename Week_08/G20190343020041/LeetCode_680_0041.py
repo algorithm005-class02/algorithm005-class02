@@ -24,6 +24,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+import string
+
+
 class Solution:
     def validPalindrome(self, s: str) -> bool:
         l, r = 0, len(s) - 1
@@ -41,6 +44,7 @@ class Solution:
                 i, j = i + 1, j + 1
             else:
                 return False
+
         return True
 
 
