@@ -1,0 +1,91 @@
+class Solution {
+
+    private String[] material = new String[]{"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+
+    public List<String> letterCombinations(String digits) {
+
+        List<String> list = new ArrayList<>();
+
+        if(digits.length() == 0){
+            return list;
+        }
+
+        if (digits.length() == 1){
+            char[] charArray = material[Integer.valueOf(digits)].toCharArray();
+            for (int i = 0; i < charArray.length; i ++){
+                list.add(String.valueOf(charArray[i]));
+            }
+            return list;
+        }
+
+        List<String> tempResult = letterCombinations(digits.substring(1));
+        char[] charArray = material[digits.charAt(0) - 48].toCharArray();
+        for (int i = 0; i < charArray.length; i ++){
+            for (String a :tempResult){
+                list.add(charArray[i] + a);
+            }
+        }
+        return list;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // //使用递归
+    // private String[] s = new String[]{"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    // public List<String> letterCombinations(String digits) {
+    //     List<String> result = new ArrayList<>();
+
+    //     if (digits.length() == 0){
+    //         return result;
+    //     }
+
+    //     if (digits.length() == 1){
+            
+    //         int count = Integer.valueOf(digits);
+    //         char [] charArray = s[count].toCharArray();
+    //         for (int i = 0; i < charArray.length; i++) {
+    //             result.add(String.valueOf(charArray[i]));
+    //         }
+    //         return result;
+    //     }
+
+    //     List<String> tempResult = letterCombinations(digits.substring(1));
+    //     int count = digits.charAt(0) - 48;
+    //     char [] charArray = s[count].toCharArray();
+    //     for (int i = 0; i < charArray.length; i++) {
+    //         for (String s2 : tempResult) {
+    //             result.add(charArray[i] + s2);
+    //         }
+    //     }
+    //     return result;
+    // }
+}

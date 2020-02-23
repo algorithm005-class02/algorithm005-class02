@@ -1,0 +1,66 @@
+class Solution {
+    public int numIslands(char[][] grid) {
+
+        if (grid.length ==0){
+            return 0;
+        }
+        int row = grid.length;
+        int cols = grid[0].length;
+        int result = 0;
+
+        for (int i = 0; i < grid.length; i ++){
+            for (int j = 0; j < grid[i].length; j ++){
+                if (grid[i][j] == '1'){
+                    result ++;
+                    Queue<TreeNode> queue = new LinkedList<>();
+                    queue.offer(new TreeNode(i,j));
+
+                    while(queue.size() > 0){
+                        int size = queue.size();
+
+                        while(size -- > 0){
+                            TreeNode t = queue.poll();
+
+                            //重复地跳过
+                            if (grid[t.x][t.y] == '0'){
+                                continue;
+                            }
+
+                            if ( t.x + 1 < grid.length && grid[t.x + 1][t.y] == '1'){
+                                queue.offer(new TreeNode(t.x + 1,t.y));
+                            }
+
+                            if ( t.x - 1 >= 0 && grid[t.x - 1][t.y] == '1'){
+                                queue.offer(new TreeNode(t.x - 1,t.y));
+                            }
+
+                            if ( t.y + 1 < grid[0].length && grid[t.x][t.y + 1] == '1'){
+                                queue.offer(new TreeNode(t.x,t.y + 1));
+                            }
+
+                            if ( t.y - 1 >= 0 && grid[t.x][t.y - 1] == '1'){
+                                queue.offer(new TreeNode(t.x,t.y - 1));
+                            }
+
+
+
+                            grid[t.x][t.y] = '0';
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    class TreeNode{
+        int x;
+        int y;
+
+        TreeNode(int x,int y){
+            this.x = x;
+            this.y = y;
+        }
+    }
+}

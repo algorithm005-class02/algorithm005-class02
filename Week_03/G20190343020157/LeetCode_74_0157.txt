@@ -1,0 +1,41 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix.length == 0 || matrix[0].length == 0){
+            return false;
+        }
+
+        if (matrix.length == 1){
+            for(int i = 0; i < matrix[0].length; i ++){
+                if(matrix[0][i] == target){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        for (int i = 0; i < matrix.length - 1; i ++){
+            if(matrix[i][0] == target){
+                return true;
+            }else if(matrix[i][0] < target && i + 1 < matrix.length){
+                for (int j = 0; j < matrix[0].length; j ++){
+                        if (matrix[i][j] == target){
+                        return true;
+                        }
+                    }
+            }
+        }
+
+        int m = matrix.length - 1;
+        if(matrix[m][0] <= target){
+            for(int i = 0; i < matrix[0].length; i ++){
+                if(matrix[m][i] == target){
+                    return true;
+                }
+            }
+        }
+        
+
+
+        return false;
+    }
+}

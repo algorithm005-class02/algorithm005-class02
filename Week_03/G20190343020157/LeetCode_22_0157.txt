@@ -1,0 +1,26 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> list = new ArrayList<>();
+        construct(0,0,n,"",list);
+        return list;
+    }
+
+    public void construct(int left,int right,int n,String s, List<String> list){
+
+        if (left == n && right == n){
+            list.add(s);
+            return;
+        }
+
+        if ( left < n){
+            construct(left + 1,right,n,s + "(",list);
+        }
+
+        if(left > right){
+            construct(left,right + 1,n,s + ")",list);
+        }
+    }
+
+
+    
+}

@@ -1,0 +1,93 @@
+class Solution {
+
+    //超出时间限制了
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        if (wordList.size() == 0){
+            return new ArrayList<>();
+        }
+
+        Set<String> set = new HashSet<>();
+        for (String temp : wordList){
+            set.add(temp);
+        }
+        Set<String> visited = new HashSet<>();
+        visited.add(beginWord);
+
+        int distance = bfs(beginWord,endWord,wordList,set,visited);
+
+        if (distance == 0){
+            return new ArrayList<>();
+        }
+
+        List<List<String>> resultList = new ArrayList<>();
+        construct(beginWord,endWord,set,visited,1,distance,new ArrayList<>(),resultList);
+        return resultList;
+    }
+
+    public int bfs(String beginWord, String endWord, List<String> wordList,Set<String> set,Set<String> visited){
+
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(beginWord);
+
+        visited.add(beginWord);
+
+        int level = 0;
+        while(queue.size() > 0){
+            int size = queue.size();
+            while(size -- > 0){
+                String cur = queue.poll();
+
+                if (cur.equals(endWord)){
+                    return level;
+                }
+                char[] charArray = cur.toCharArray();
+                for (int i = 0;i < charArray.length; i ++){
+                    char old = charArray[i];
+                    char a = 'a';
+                    for (int j = 0;j < 26; j ++){
+                        charArray[i] = (char)(a + j);
+                        String s = new String(charArray);
+                        if (set.contains(s) && ! visited.contains(s)){
+                            String temp = new String(charArray); 
+                            queue.offer(temp);
+                            visited.add(temp);
+                        }
+                    }
+                    charArray[i] = old;
+                }
+            }
+            level ++;
+        }
+
+        return 0;
+    }
+
+    public void construct(String cur, String endWord, Set<String> set, Set<String> visited,int index, int distance, List<String> res, List<List<String>> resultList){
+        if (cur.equals(endWord)){
+            res.add(cur);
+            resultList.add(res);
+            return;
+        }
+
+        res.add(cur);
+        visited.add(cur);
+
+
+        char[] charArray = cur.toCharArray();
+
+        for (int i = 0;i < charArray.length; i ++){
+            char old = charArray[i];
+            char a = 'a';
+            for (int j = 0;j < 26; j ++){
+                charArray[i] = (char)(a + j);
+                String s = new String(charArray);
+                if (set.contains(s) && index <= distance && !res.contains(s)){
+                    List<String> tempRes = new ArrayList<>(res);
+                    construct(s, endWord, set, visited,index + 1, distance, tempRes, resultList);
+                }
+            }
+            charArray[i] = old;
+        }
+    }
+
+}

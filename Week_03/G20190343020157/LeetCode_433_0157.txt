@@ -1,0 +1,55 @@
+class Solution {
+
+    //广度优先搜索，对变化的状态树做广度优先搜索
+    public int minMutation(String start, String end, String[] bank) {
+
+        if (start.equals(end)){
+            return 0;
+        }
+
+        
+
+        //用于实现广度优先搜索的队列
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(start);
+
+        Set<String> bankSet = new HashSet<>();
+        for (int i = 0;i < bank.length; i ++){
+            bankSet.add(bank[i]);
+        }
+
+        Set<String> visited = new HashSet<>();
+        visited.add(start);
+
+        int level = 0;
+        
+        char[] ATCG = new char[]{'A','T','C','G'};
+
+
+        while(queue.size() > 0){
+            int size = queue.size();
+            while(size -- > 0){
+                String current = queue.poll();
+                if (current.equals(end)){
+                    return level;
+                }
+                char [] charArray = current.toCharArray();
+                for (int i = 0; i < charArray.length; i ++){
+                    char old = charArray[i];
+                    for (int j = 0; j < ATCG.length; j ++){
+                        charArray[i] = ATCG[j];
+                        String s = new String(charArray);
+                        if (bankSet.contains(s) && ! visited.contains(s)){
+                            queue.offer(s);
+                            visited.add(s);
+                        }
+                    }
+                    charArray[i] = old;
+                }
+            }
+            level ++;
+        }
+        
+        return -1;
+    }
+}
