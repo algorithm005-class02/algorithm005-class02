@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Islands : NSObject
+
 int numIslands(char** grid, int gridSize, int* gridColSize);
 @end
 

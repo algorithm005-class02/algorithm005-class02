@@ -13,6 +13,7 @@ int dfs(char** grid, int gridSize, int* gridColSize, int row, int col) {
     if (row < 0 || row > gridSize -1 || col < 0 || col > gridColSize[0] -1 || grid[row][col] != '1') {
         return 0;
     }
+    
 
     grid[row][col] = 'A';
 

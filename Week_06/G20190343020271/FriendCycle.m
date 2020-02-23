@@ -9,6 +9,7 @@
 #import "FriendCycle.h"
 
 @implementation FriendCycle
+
 int N[200];
 
 void setN(int target, int replace, int size)

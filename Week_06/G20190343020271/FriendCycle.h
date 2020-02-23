@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FriendCycle : NSObject
+
 int findCircleNum(int*_Nullable* M, int MSize, int* MColSize);
 @end
 
