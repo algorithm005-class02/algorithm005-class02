@@ -26,7 +26,7 @@ var majorityElement = function (nums) {
   }
   countedNums.forEach(getMax)
   return num
-}
+} 
 
 /* 分治算法 利用计算机的正确方式 设计一个命令 让计算机去重复执行 先剥离
 先剥离到底层 剩下的肯定会有一个或者两个最多的数字
