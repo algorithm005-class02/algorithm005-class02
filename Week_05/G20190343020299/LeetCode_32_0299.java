@@ -5,6 +5,7 @@ public class LeetCode_32_0299 {
         System.out.println(new LeetCode_32_0299().longestValidParentheses("(()"));
     }
 
+
     public int longestValidParentheses(String s) {
         int maxLen = 0;
         for (int i = 0; i < s.length(); i++) {
