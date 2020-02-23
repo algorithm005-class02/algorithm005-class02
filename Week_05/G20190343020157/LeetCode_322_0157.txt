@@ -1,0 +1,57 @@
+class Solution {
+    //这种算法没有保留中间状态，所以耗时太长
+    // public int coinChange(int[] coins, int amount) {
+
+    //     if (amount == 0){
+    //         return 0;
+    //     }
+    //     //  result = min(f(currentAmount -coins[i])...) + 1
+    //     int result  = amount + 1;
+    //     for (int i = 0; i < coins.length; i ++){
+
+    //         if( amount - coins[i] < 0){
+    //             break;
+    //         }
+
+    //         if(amount - coins[i] == 0){
+    //             return 1;
+    //         }else{
+    //             int tempResult = coinChange(coins, amount - coins[i]);
+    //             if (tempResult < result && tempResult != -1){
+    //                 result = tempResult;
+    //             }
+    //         }
+    //     }
+    //     if(result != (amount + 1)){
+    //         result += 1;
+    //     }else{
+    //         result = -1;
+    //     }
+    //     return result;
+    // }
+
+
+    public int coinChange(int[] coins, int amount) {
+
+        if (amount == 0){
+            return 0;
+        }
+        int [] array = new int [amount];
+        //  result = min(f(currentAmount -coins[i])...) + 1
+        for (int i = 0; i < amount; i ++){
+            for(int j = 0; j < coins.length; j ++){
+                int min = 0;
+                if(i - j >= 0 ){
+                    
+                }else{
+                    
+                }
+            }
+        }
+        return result;
+    }
+
+
+
+
+}
