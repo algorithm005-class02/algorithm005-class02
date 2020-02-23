@@ -1,5 +1,7 @@
 class Solution {
 public:
+
+u
     int numDecodings(string s) {
         if(s.size() == 0 || s[0] == '0') return 0;
         int pre = 1, curr = 1;

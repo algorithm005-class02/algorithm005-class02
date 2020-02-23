@@ -1,6 +1,7 @@
 class Solution {
 public:
 
+
     int lengthOfLIS(vector<int>& nums) {
         if(nums.size() <= 0) return 0;
         vector<int> tails(nums.size(),0);
