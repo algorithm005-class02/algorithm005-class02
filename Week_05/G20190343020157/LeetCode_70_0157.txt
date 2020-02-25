@@ -1,0 +1,110 @@
+class Solution {
+
+    private int [] memo = null;
+
+    public int climbStairs(int n) {
+        
+        if (n <= 2){
+            return n;
+        }
+        
+        if (memo == null){
+            memo = new int[n + 1];
+        }
+
+        if (memo[n - 1] == 0){
+            memo[n - 1] = climbStairs(n - 1);
+        }
+
+        if (memo[n - 2] == 0){
+            memo[n -2] = climbStairs(n - 2);
+        }
+
+        return memo[n - 1] + memo[n - 2];
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //最暴力解法，时间超出限制
+    // public int climbStairs(int n) {
+    //     if (n == 1){
+    //         return 1;
+    //     }else if(n ==2){
+    //         return 2;
+    //     }else{
+    //         return climbStairs(n -1)+climbStairs(n-2);
+    //     }
+    // }
+
+
+    //爬楼梯问题类似于斐波那契，解决方法比较简单，即递归，但是时间复杂度太高，O(2的n次方)，原因是有大量重复的计算没有复用。
+    //所以优化的重点就在于保存可重用的结果。
+    // public int climbStairs(int n) {
+    //     int[] status = new int[n+1];
+    //     return get(n,status);
+    // }
+
+
+    // public int get(int n,int[] status){
+    //     if (n == 1){
+    //         return 1;
+    //     }else if(n ==2){
+    //         return 2;
+    //     }else if (status[n] > 0){
+    //         return status[n];
+    //     }else{
+    //         status[n] = get(n-1,status)+get(n-2,status);
+    //         return status[n];
+    //     }
+    // }
+
+    // public int climbStairs(int n) {
+    //     int memo[] = new int[n + 1];
+    //     return climb_Stairs(0, n, memo);
+    // }
+    // public int climb_Stairs(int i, int n, int memo[]) {
+    //     if (i > n) {
+    //         return 0;
+    //     }
+    //     if (i == n) {
+    //         return 1;
+    //     }
+    //     if (memo[i] > 0) {
+    //         return memo[i];
+    //     }
+    //     memo[i] = climb_Stairs(i + 1, n, memo) + climb_Stairs(i + 2, n, memo);
+    //     return memo[i];
+    // }
+
+
+
+
+}

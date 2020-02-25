@@ -1,0 +1,50 @@
+class Solution {
+
+    //太难了太难了太难了
+    public int longestCommonSubsequence(String text1, String text2) {
+        if (text1 == "" || text2 == ""){
+            return 0;
+        }
+        //使用二维数组解决
+        int m = text1.length();
+        int n = text2.length();
+        char [] text1Char = text1.toCharArray();
+        char [] text2Char = text2.toCharArray();
+        int [][] array = new int [m][n];
+
+        for(int j = 0;j < n; j ++){
+            if(j > 0 && array[0][j - 1] == 1){
+                array[0][j] = 1;
+                continue;
+            }
+
+            if(text2Char[j] == text1Char[0]){
+                array[0][j] = 1;
+            }
+        }
+
+        for(int j = 0;j < m; j ++){
+            if(j > 0 && array[j - 1][0] == 1){
+                array[j][0] = 1;
+                continue;
+            }
+            
+            if(text1Char[j] == text2Char[0]){
+                array[j][0] = 1;
+            }
+        }
+
+
+        for(int i = 1;i < m; i++){
+            for (int j = 1 ; j < n ; j ++){
+                if(text2Char[j] == text1Char[i]){
+                    array[i][j] = array[i -1][j - 1] + 1;
+                }else{
+                    array[i][j] = Math.max(array[i][j - 1],array[i - 1][j]);
+                }
+            }
+        }
+
+        return array[m - 1][n - 1];
+    }
+}

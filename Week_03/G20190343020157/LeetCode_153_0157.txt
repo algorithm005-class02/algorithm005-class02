@@ -1,0 +1,37 @@
+class Solution {
+
+    //O(n)时间复杂度
+    // public int findMin(int[] nums) {
+    //     if(nums.length == 1){
+    //         return nums[0];
+    //     }
+    //     for (int i = 1;i < nums.length; i ++){
+    //         if (nums[i] < nums[i - 1]){
+    //             return nums[i];
+    //         }
+    //     }
+    //     return nums[0];
+    // }
+
+    public int findMin(int[] nums) {
+        if(nums.length == 1){
+            return nums[0];
+        }
+
+        int left = 0;
+        int right = nums.length - 1;
+        int mid = (left + right) >> 1;
+        while(left < right){
+            if(nums[mid] > nums[0]){
+                if (nums[mid] == )
+
+            }else if(nums[mid] < nums[0]){
+                
+            }
+        }
+
+
+
+        return nums[0];
+    }
+}

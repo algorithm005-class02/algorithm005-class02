@@ -1,0 +1,58 @@
+class Solution {
+    // public int jump(int[] nums) {
+    //     //执行用时 :358 ms, 在所有 Java 提交中击败了6.30%的用户内存消耗 :39.7 MB, 在所有 Java 提交中击败了20.78%的用户
+    //     //思路：新申请一个数组用于存储步数，result[];
+    //     //result[]数组中每一个元素的值为（前元素中最小步数 + 1）；
+    //     int [] result = new int[nums.length];
+    //     for (int i = 1; i < result.length ; i ++){
+    //         result[i] = 0x7fffffff;
+    //     }
+
+    //     for (int i = 0; i < result.length - 1; i ++){
+    //         int count = nums[i];
+    //         for (int j = 1; (j <= count) && ((i + j) < result.length); j ++){
+    //             result[i + j] = Math.min(result[i] + 1,result[i + j]);
+    //         }
+    //     }
+
+    //     return result[result.length - 1];
+    // }
+
+
+    // //贪心算法
+    // public int jump(int[] nums) {
+    //     int step = 0;
+    //     for (int i = 0; i < nums.length - 1; step ++){
+    //         int count = nums[i];
+    //         int max = 0;
+    //         int index = 0;
+    //         for (int j = 1; j <= count && (i + j) < nums.length; j ++){
+    //             if (nums[i + j] > max){
+    //                 max = nums[i + j];
+    //                 index = i + j;
+    //             }
+    //         }
+    //         i = index;
+    //     }
+
+    //     return step;
+    // }
+
+    //贪心算法
+    public int jump(int[] nums) {
+        int Max = 0;
+        int end = 0;
+        int step = 0;
+
+        for (int i = 0;i < nums.length - 1;i ++){
+            Max = Math.max(Max,nums[i] + i);
+            
+            if (i == end){
+                end = Max;
+                step ++;
+            }
+        }
+
+        return step;
+    }
+}

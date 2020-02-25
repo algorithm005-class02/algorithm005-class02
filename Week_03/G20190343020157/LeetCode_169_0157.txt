@@ -1,0 +1,30 @@
+class Solution {
+
+    使用递归
+    public ListListInteger subsets(int[] nums) {
+        ListListInteger finalResult = new LinkedList();
+        getPailie(finalResult,nums,0,new LinkedList());
+        return finalResult;
+    }
+
+    public void getPailie(ListListInteger finalResult,int[] nums,int stage,ListInteger result){
+        if(stage  nums.length - 1){
+            finalResult.add(result);
+            return;
+        }
+        ListInteger tempResult1 = new LinkedList(result);
+        getPailie(finalResult,nums,stage + 1,tempResult1);
+        ListInteger tempResult2 = new LinkedList(tempResult1);
+        tempResult2.add(nums[stage]);
+        getPailie(finalResult,nums,stage + 1,tempResult2);
+    }
+
+    使用迭代
+    public ListListInteger subsets(int[] nums) {
+        ListListInteger finalResult = new LinkedList();
+        for (int i = 0;i  nums.length; i ++){
+            ListInteger = tempResult1 = new ArrayList();
+            
+        }
+    }
+}

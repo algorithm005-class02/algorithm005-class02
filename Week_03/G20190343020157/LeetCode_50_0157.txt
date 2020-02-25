@@ -1,0 +1,33 @@
+class Solution {
+
+    //使用分治将时间复杂度降低为(logn)的思路是n次幂不需要乘n次，只需要乘n/2次，然后结果相乘。
+    //在关于负次幂的地方错了太多。
+    public double myPow(double x, int n) {
+
+        if(n == 0){
+            return 1;
+        }
+
+        if (n == 1){
+            return x;
+        }
+
+        if (n == -1){
+            return 1/x;
+        }
+        
+        double tempResult = myPow(x,n/2);
+        double result = tempResult * tempResult;
+        int odd = n & 1;
+        if (odd == 1){
+            if (n > 0){
+                result *= x;
+            }else{
+                result = result * (1/x); 
+            }
+        }
+
+
+        return result;
+    }
+}
